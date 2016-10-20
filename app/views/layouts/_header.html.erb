@@ -1,10 +1,11 @@
-<header class="navbar navbar-static-top navbar-inverse ">
+<header class="navbar navbar-static-top navbar">
 <div class=" container-fluid">
       <%= link_to "EV", root_path, id: "logo" %>
       <br/>
       <nav>
         <ul class="nav navbar-nav navbar-right ">
           <li>
+            <div class="container-fluid">
             <form class="navbar-form  text-center" role="search">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar" name="srch-term" id="srch-term">
@@ -13,6 +14,7 @@
                 </div>
             </div>
             </form>
+          </div>
           </li>
           <li><%= link_to "Início",   root_path %></li>
           <li><%= link_to "Grupos",   '#' %></li>
