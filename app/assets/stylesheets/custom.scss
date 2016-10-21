@@ -28,6 +28,13 @@ textarea {
   }
 }
 
+.item{
+  max-width: 80%;
+  display:inline-block;
+  text-align: left;
+  margin: 0px 20px 0px 20px;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -53,6 +60,11 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+p .inverse{
+    color:white;
+
 }
 
 
@@ -142,6 +154,11 @@ aside {
 
 .gravatar_edit {
   margin: 15px 0px 70px;
+}
+
+.gravatar_header {
+  margin-top: -5px;
+  padding-bottom: 20px;
 }
 
 /* forms */

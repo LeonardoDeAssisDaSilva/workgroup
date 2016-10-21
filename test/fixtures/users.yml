@@ -11,3 +11,10 @@
 #   email: MyString
 #   course: MyString
 #   organization: MyString
+
+userX:
+  name: Foo Bar
+  email: foobar@email.com
+  course: Testings
+  organization: Example Inc.
+  password_digest: <%= User.digest('password') %>
