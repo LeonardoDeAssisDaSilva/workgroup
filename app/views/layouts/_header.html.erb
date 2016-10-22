@@ -29,7 +29,7 @@
        <ul class="nav navbar-nav navbar-right">
          <li><%= link_to "Início",   root_path %></li>
          <li><%= link_to "Grupos",   '#' %></li>
-         <li><%= link_to "Usuários", '#' %></li>
+         <li><%= link_to "Usuários", users_path %></li>
          <% if logged_in? %>
            <li class="dropdown">
              <a href="#" class="dropdown-toggle gravatar_header" data-toggle="dropdown">
