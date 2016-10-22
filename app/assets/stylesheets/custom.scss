@@ -32,7 +32,8 @@ textarea {
   max-width: 80%;
   display:inline-block;
   text-align: left;
-  margin: 0px 20px 0px 20px;
+  margin: 5px 20px 0px 20px;
+  color: $gray-light;
 }
 
 /* typography */
@@ -61,12 +62,6 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-
-p .inverse{
-    color:white;
-
-}
-
 
 /* header */
 
@@ -158,7 +153,6 @@ aside {
 
 .gravatar_header {
   margin-top: -5px;
-  padding-bottom: 20px;
 }
 
 /* forms */
