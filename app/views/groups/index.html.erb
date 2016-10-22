@@ -1,0 +1,20 @@
+<h1>Grupos</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <table>
+      <tr>
+        <th>Nome do Grupo</th>
+        <th>Área de Interesse</th>
+      </tr>
+
+      <%= @group.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.area %></td>
+      </tr>
+      <% end %>
+      
+    </table>
+  </div>
+</div>
