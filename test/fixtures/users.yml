@@ -18,3 +18,17 @@ userX:
   course: Testings
   organization: Example Inc.
   password_digest: <%= User.digest('password') %>
+
+userY:
+  name: Waldo Baz
+  email: waldobaz@email.com
+  course: Integration
+  organization: Example Inc.
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
