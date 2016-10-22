@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   #update   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
+  
+  resources :groups
 end
