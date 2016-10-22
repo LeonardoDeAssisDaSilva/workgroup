@@ -12,6 +12,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.4.1'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 gem 'route_translator'
+gem 'gravatar_image_tag', '~> 1.2'
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'
