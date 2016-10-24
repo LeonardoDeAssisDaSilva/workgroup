@@ -159,6 +159,11 @@ aside {
   margin-top: -5px;
 }
 
+
+a.dropdown-toggle { //Espaço entre gravatar e dropdown
+  height: 50px;
+}
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
