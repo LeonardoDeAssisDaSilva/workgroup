@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: APP_CONFIG['support_email']
+  default from: 'noreply@example.com'
   layout 'mailer'
 end
