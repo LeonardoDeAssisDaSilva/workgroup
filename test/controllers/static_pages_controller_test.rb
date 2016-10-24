@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @title = "Equipes Virtuais"
+    @title = APP_CONFIG['default_title']
   end
 
   test "should get home" do

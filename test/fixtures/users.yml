@@ -18,6 +18,8 @@ userX:
   course: Testings
   organization: Example Inc.
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 userY:
   name: Waldo Baz
@@ -25,10 +27,23 @@ userY:
   course: Integration
   organization: Example Inc.
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+userZ:
+  name: Quux
+  email: quux@email.com
+  course: Integration
+  organization: Example Inc.
+  password_digest: <%= User.digest('password') %>
+  activated: false
+  activated_at: <%= Time.zone.now %>
 
 <% 30.times do |n| %>
 user_<%= n %>:
   name:  <%= "User #{n}" %>
   email: <%= "user-#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

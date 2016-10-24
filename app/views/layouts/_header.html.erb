@@ -1,4 +1,4 @@
-<header class = "navbar navbar-static-top navbar-inverse" role = "navigation">
+<header class = "navbar navbar-fixed-top navbar-inverse" role = "navigation">
   <div class="container">
      <div class = "navbar-header">
         <button type = "button" class = "navbar-toggle"
@@ -9,7 +9,7 @@
            <span class = "icon-bar"></span>
         </button>
 
-          <%= link_to "EV", root_path, id: "logo" %>
+          <%= link_to APP_CONFIG['title_abbreviation'], root_path, id: "logo" %>
      </div>
 
      <div class = "collapse navbar-collapse" id = "navbar-collapse">
@@ -28,7 +28,7 @@
        </ul>
        <ul class="nav navbar-nav navbar-right">
          <li><%= link_to "Início",   root_path %></li>
-         <li><%= link_to "Grupos",   '#' %></li>
+         <li><%= link_to "Grupos",   groups_path %></li>
          <li><%= link_to "Usuários", users_path %></li>
          <% if logged_in? %>
            <li class="dropdown">
