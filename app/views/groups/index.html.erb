@@ -5,8 +5,8 @@
 </div>
 
 <%#= will_paginate %>
-<div class="container" id="col-height">
-  <%= @group.each do |group| %>
+<div class="container">
+  <% @groups.each do |group| %>
     <div class="col-lg-4 groups">
       <img class="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png" width="140" height="140">
       <h2><%= group.name %></h2>
