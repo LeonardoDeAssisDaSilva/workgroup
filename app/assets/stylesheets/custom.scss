@@ -217,3 +217,16 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* Groups index */
+
+.groups {
+  text-align: center;
+
+  .left {
+    text-align: left;
+  }
+  p {
+    word-wrap: break-word;
+  }
+}

@@ -1,20 +1,23 @@
-<h1>Grupos</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <table>
-      <tr>
-        <th>Nome do Grupo</th>
-        <th>Área de Interesse</th>
-      </tr>
-
-      <%= @group.each do |group| %>
-      <tr>
-        <td><%= group.name %></td>
-        <td><%= group.area %></td>
-      </tr>
-      <% end %>
-
-    </table>
-  </div>
+<% provide(:title, 'Grupos') %>
+<div class="jumbotron text-center">
+  <h1>Grupos</h1>
+  <p>Esta área mostra todos os grupos</p>
 </div>
+
+<%#= will_paginate %>
+<div class="container" id="col-height">
+  <%= @group.each do |group| %>
+    <div class="col-lg-4 groups">
+      <img class="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png" width="140" height="140">
+      <h2><%= group.name %></h2>
+      <p class="left"><strong><%= group.area %></strong></p>
+      <p class="left"><%= group.description %></p>
+      <p>
+        <br/>
+        <a class="btn btn-default" href="#" role="button">Ver mais</a>
+      </p>
+    </div>
+
+  <% end %>
+</div>
+<%#= will_paginate %>
