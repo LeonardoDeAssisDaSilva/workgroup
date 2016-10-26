@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Group.all
+    @groups = Group.paginate(page: params[:page])
   end
 
   def show

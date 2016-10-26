@@ -221,12 +221,36 @@ input {
 /* Groups index */
 
 .groups {
+  height: 410px;
   text-align: center;
 
+  img {
+    width: 140px;
+    height: 140px;
+  }
   .left {
     text-align: left;
   }
-  p {
+  .btn{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 25%;
+    right: 25%;
+    bottom: 0;
+    margin-bottom: 5px;
+  }
+
+  p{
     word-wrap: break-word;
+    line-height: 1.5em;
+  }
+  p.area {
+    height: 3em;
+    overflow: hidden;
+  }
+  p.description {
+    height: 4.5em;
+    overflow: hidden;
   }
 }

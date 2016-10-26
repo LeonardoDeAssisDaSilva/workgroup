@@ -4,20 +4,30 @@
   <p>Esta área mostra todos os grupos</p>
 </div>
 
-<%#= will_paginate %>
+<%= will_paginate %>
 <div class="container">
-  <% @groups.each do |group| %>
-    <div class="col-lg-4 groups">
-      <img class="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png" width="140" height="140">
-      <h2><%= group.name %></h2>
-      <p class="left"><strong><%= group.area %></strong></p>
-      <p class="left"><%= group.description %></p>
-      <p>
-        <br/>
-        <a class="btn btn-default" href="#" role="button">Ver mais</a>
-      </p>
-    </div>
+
+  <% @groups.each_slice(3) do |group_slice| %>
+
+    <div class="row">
+
+      <% group_slice.each do |group| %>
+
+        <div class="col-lg-4 groups">
+          <img class="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
+          <h2><%= group.name %></h2>
+          <p class="left area"><strong><%= group.area %></strong></p>
+          <p class="left description"><%= group.description %></p>
+          <p class="btn">
+            <a class="btn btn-default" href="#" role="button">Ver mais</a>
+          </p>
+        </div>
+
+      <% end %>
+
+    </div><br/><br/>
 
   <% end %>
+
 </div>
-<%#= will_paginate %>
+<%= will_paginate %>
