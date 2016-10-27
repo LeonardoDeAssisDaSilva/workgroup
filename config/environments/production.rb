@@ -85,13 +85,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #mail config
+  config.action_mailer.default_url_options = { :host => 'a17224.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
      address:              'smtp.gmail.com',
      port:                 587,
      domain:               'gmail.com',
-     user_name:            'a17224app@gmail.com',
-     password:             'd?hkS+6fcM',
+     user_name:            ENV["GMAIL_USERNAME"],
+     password:             ENV["GMAIL_PASSWORD"],
      authentication:       'plain',
      enable_starttls_auto: true
   }
