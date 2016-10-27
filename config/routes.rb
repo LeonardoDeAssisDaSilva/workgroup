@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get       '/login',   to: 'sessions#new'
   post      '/login',   to: 'sessions#create'
   delete    '/logout',  to: 'sessions#destroy'
+  get 'account_activations/:activation_token/edit', to: 'account_activations#edit',
+  as:  'edit_account_activation'
   resources :users
   resources :groups
-  resources :account_activations, only: [:edit]
+  #resources :account_activations, only: [:edit]
 end
