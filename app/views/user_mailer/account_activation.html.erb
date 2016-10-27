@@ -5,8 +5,8 @@
 <p>
 Bem-vindo ao <%= APP_CONFIG['title_abbreviation'] %>! Clique no endereço abaixo para ativar sua conta:
 
-<% @user.activation_token = User.new_token %>
-<% @user.activation_digest = User.digest(@user.activation_token) %>
+<%# @user.activation_token = User.new_token %>
+<% #@user.activation_digest = User.digest(@user.activation_token) %>
 TOKEN: <%= @user.activation_token %>
 
 </p>
