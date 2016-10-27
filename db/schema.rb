@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161026234524) do
   create_table "members", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.boolean  "admin"
+    t.boolean  "admin"       default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_members_on_group_id"
@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 20161026234524) do
     t.string   "email"
     t.string   "course"
     t.string   "organization"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.string   "activation_digest"
-    t.boolean  "activated",         default: false
+    t.boolean  "activated",                          default: false
     t.datetime "activated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

@@ -1,7 +1,16 @@
 class MembersController < ApplicationController
 
   def index
-    @members = Member.paginate(page: params[:page])
+    @members = Member.where("group_id = 1").paginate(page: params[:page])
+  end
+
+  def create
+    @member = Member.new(member_params)
+    if @member.save
+      flash[:success] = "Novo membro adicionado."
+    else
+      flash[:warning] = "Por favor, tente novamente."
+    end
   end
 
   private

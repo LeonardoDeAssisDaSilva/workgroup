@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   get       '/login',             to: 'sessions#new'
   post      '/login',             to: 'sessions#create'
   delete    '/logout',            to: 'sessions#destroy'
-  get       'groups/:id/members', to: 'members#index'
 
   resources :users
-  resources :groups
-  resources :members, only: [:show]
+  resources :groups do
+    resources :members, only: [:index]
+  end
+
   resources :account_activations, only: [:edit]
 end
