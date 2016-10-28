@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :groups do
-    resources :members, only: [:index]
+    resources :members, only: [:index], as: 'members'
   end
 
   resources :account_activations, only: [:edit]

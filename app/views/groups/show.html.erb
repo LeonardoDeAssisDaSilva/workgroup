@@ -1,11 +1,26 @@
 <div class="row">
-  <aside class="col-md-4">
-    <section class="info">
-      <h1><%= @group.name %></h1>
-      <p>
-        Área de interesse: <%= @group.area %><br>
-        Descrição: <%= @group.description %>
-      </p>
-    </section>
+  <aside class="col-sm-4 col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img style="width: 80px; height:80px" class="img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
+            </a>
+          </div>
+          <div class="media-body media-middle">
+            <h4 class="media-heading"><%= @group.name %></h4>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p>
+          Descrição: <%= @group.description %>
+        </p>
+      </div>
+      <div class="panel-footer"><%= @group.area %></div>
+    </div>
   </aside>
 </div>
+
+<%= link_to "Membros",  group_members_path(@group) %>
