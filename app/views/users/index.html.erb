@@ -1,9 +1,11 @@
 <% provide(:title, 'Usuários') %>
-<h1>Usuários</h1>
+<div class="jumbotron">
+  <h1>Usuários</h1>
+</div>
 
 <%= will_paginate %>
 
-<ul class="users">
+<ul class="list">
   <%= render @users %>
 </ul>
 

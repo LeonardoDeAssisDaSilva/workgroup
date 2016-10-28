@@ -1,5 +1,9 @@
 class User < ApplicationRecord
+  has_many :members, :dependent => :destroy
+  has_many :groups, through: :members
+
   attr_accessor :remember_token, :activation_token
+
   before_save   :downcase_email
   before_save :create_activation_digest
 

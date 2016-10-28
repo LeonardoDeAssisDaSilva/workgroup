@@ -2,4 +2,4 @@ Olá <%= @user.name %>,
 
 Bem-vindo ao <%= APP_CONFIG['title_abbreviation'] %>! Clique no endereço abaixo para ativar sua conta:
 
-<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%= edit_account_activation_url("#{@user.activation_token}", email: @user.email) %>

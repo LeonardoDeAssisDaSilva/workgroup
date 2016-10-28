@@ -24,7 +24,7 @@ Descrição: <%= @group.description %>
         <div class="group_menu">
           <ul class="nav">
             <li class="active"><a href="#">Option1 </a></li>
-            <li><a href="#">Option2</a></li>
+            <li><%= link_to "Membros",  group_members_path(@group) %></li>
             <li><a href="#">Option3</a></li>
           </ul>
         <!-- GROUP_MENU -->
