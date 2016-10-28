@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
 
   def index
-    @members = Member.where("group_id = 1").paginate(page: params[:page])
+    @members = Member.where("group_id = #{params[:group_id]}").paginate(page: params[:page])
   end
 
   def create
