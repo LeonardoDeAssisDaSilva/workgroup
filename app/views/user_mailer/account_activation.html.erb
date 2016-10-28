@@ -5,6 +5,6 @@
 <p>
 Bem-vindo ao <%= APP_CONFIG['title_abbreviation'] %>! Clique no endereço abaixo para ativar sua conta:
 </p>
-
-<%= link_to "Ativar", edit_account_activation_url(@user, @user.activation_token,
+TOKEN <%=  @user.activation_token %>
+<%= link_to "Ativar", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>
