@@ -25,7 +25,11 @@ Descrição: <%= @group.description %>
           <ul class="nav">
             <li class="active"><a href="#">Option1 </a></li>
             <li><%= link_to "Membros",  group_members_path(@group) %></li>
-            <li><a href="#">Option3</a></li>
+            <% if member?(@group) %>
+                <li><%= link_to "Deixar grupo",  group_member_path(@group), method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Participar",  group_members_path(@group), method: :post %></li>
+            <% end %>
           </ul>
         <!-- GROUP_MENU -->
         </div>
@@ -36,7 +40,10 @@ Descrição: <%= @group.description %>
     </div>
 
     <div class="col-md-9 well group_content">
-
+      <% if member?(@group) %>
+      <% else %>
+        <div class="jumbotron"><h3>Apenas membros possuem acesso a este conteúdo</h3></div>
+      <% end %>
     <!--COL-MD-3 -->
     </div>
 

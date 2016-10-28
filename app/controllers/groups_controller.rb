@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      @group.members.create!(group: @group, user: current_user, admin: true )
+      @group.members.create!(group: @group, user: current_user, admin: true)
       redirect_to @group
     else
       render 'new'
