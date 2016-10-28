@@ -18,8 +18,8 @@
           <h2><%= group.name %></h2>
           <p class="area"><strong><%= group.area %></strong></p>
           <p class="left description"><%= group.description %></p>
-          <p class="btn">
-            <a class="btn btn-default" href="#" role="button">Ver mais</a>
+          <p>
+            <%= link_to "Ver mais", group, {:class => "btn btn-default", :role => "button"}%>
           </p>
         </div>
 

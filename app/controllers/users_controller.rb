@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user.send_activation_email
     redirect_to root_url and return unless @user.activated?
   end
 
@@ -20,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
+
       flash[:info] = "Por favor visite seu email para ativar sua conta."
       redirect_to root_url
     else

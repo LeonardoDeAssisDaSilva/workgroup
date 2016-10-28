@@ -1,5 +1,46 @@
-<h1><%= @group.name %></h1>
+<!--<h1><%= @group.name %></h1>
 
 <p>Área de interesse: <%= @group.area %><br>
-Descrição: <%= @group.description %> 
-</p>
+Descrição: <%= @group.description %>
+</p>-->
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-3 well">
+      <div class="group_sidebar">
+
+        <div class="group_pic">
+          <img class="img-circle" width="140" height="140" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
+        <!-- GROUP_PIC -->
+        </div>
+
+        <div class="group_information">
+          <div class="group_name"><strong><%= @group.name %></strong></div>
+          <div class="group_area"><%= @group.area %></div>
+        <!-- GROUP_INFORMATION -->
+        </div>
+
+        <div class="group_menu">
+          <ul class="nav">
+            <li class="active"><a href="#">Option1 </a></li>
+            <li><a href="#">Option2</a></li>
+            <li><a href="#">Option3</a></li>
+          </ul>
+        <!-- GROUP_MENU -->
+        </div>
+      <!-- GROUP_SIDEBAR -->
+      </div>
+
+    <!--COL-MD-3 -->
+    </div>
+
+    <div class="col-md-9 well content">
+
+    <!--COL-MD-3 -->
+    </div>
+
+  <!-- ROW -->
+  </div>
+<!-- CONTAINER -->
+</div>

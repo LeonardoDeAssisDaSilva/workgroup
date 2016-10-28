@@ -1,3 +1,64 @@
 // Place all the styles related to the groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Groups Show*/
+.group_pic {
+  text-align: center;
+}
+
+.group_information {
+  word-wrap: break-word;
+
+  .group_name {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .group_area {
+    margin-bottom: 20px;
+  }
+}
+
+.content {
+  height: 600px;
+}
+
+/* Groups index */
+
+.groups {
+  height: 410px;
+  text-align: center;
+  margin-top: 50px;
+
+  img {
+    width: 140px;
+    height: 140px;
+  }
+  .left {
+    text-align: left;
+  }
+  .btn{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 35%;
+    right: 35%;
+    bottom: 0;
+    margin-bottom: 5px;
+  }
+
+  p{
+    word-wrap: break-word;
+    line-height: 1.5em;
+  }
+  p.area {
+    height: 3em;
+    overflow: hidden;
+  }
+  p.description {
+    height: 4.5em;
+    overflow: hidden;
+  }
+}
