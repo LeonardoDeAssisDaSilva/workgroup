@@ -1,5 +1,5 @@
 module MembersHelper
   def member?(group)
-    group.users.exists?(current_user)
+    current_user.groups.exists?(group)
   end
 end

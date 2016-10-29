@@ -12,7 +12,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if logged_in?
+      redirect_to root_url
+    else
+      @user = User.new
+    end
   end
 
   def create
@@ -47,15 +51,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation,
                                    :course, :organization)
-    end
-
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Por favor acesse sua conta"
-        redirect_to login_url
-      end
     end
 
     # Confirms the correct user.

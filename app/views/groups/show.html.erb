@@ -4,50 +4,48 @@
 Descrição: <%= @group.description %>
 </p>-->
 
-<div class="container">
-  <div class="row">
 
-    <div class="col-md-3 well">
-      <div class="group_sidebar">
+<div class="container row">
 
-        <div class="group_pic">
-          <img class="img-circle" width="140" height="140" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
-        <!-- GROUP_PIC -->
-        </div>
+  <div class="col-md-3 well">
+    <div class="group_sidebar">
 
-        <div class="group_information">
-          <div class="group_name"><strong><%= @group.name %></strong></div>
-          <div class="group_area"><%= @group.area %></div>
-        <!-- GROUP_INFORMATION -->
-        </div>
-
-        <div class="group_menu">
-          <ul class="nav">
-            <li class="active"><a href="#">Option1 </a></li>
-            <li><%= link_to "Membros",  group_members_path(@group) %></li>
-            <% if member?(@group) %>
-                <li><%= link_to "Deixar grupo",  group_member_path(@group), method: :delete %></li>
-            <% else %>
-              <li><%= link_to "Participar",  group_members_path(@group), method: :post %></li>
-            <% end %>
-          </ul>
-        <!-- GROUP_MENU -->
-        </div>
-      <!-- GROUP_SIDEBAR -->
+      <div class="group_pic">
+        <img class="img-circle" width="140" height="140" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
+      <!-- GROUP_PIC -->
       </div>
 
-    <!--COL-MD-3 -->
+      <div class="group_information">
+        <div class="group_name"><strong><%= @group.name %></strong></div>
+        <div class="group_area"><%= @group.area %></div>
+      <!-- GROUP_INFORMATION -->
+      </div>
+
+      <div class="group_menu">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a href="#">Fórum</a></li>
+          <li><%= link_to "Membros",  group_members_path(@group) %></li>
+          <% if member?(@group) %>
+              <li><%= link_to "Deixar grupo",  group_member_path(@group), method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Participar",  group_members_path(@group), method: :post %></li>
+          <% end %>
+        </ul>
+      <!-- GROUP_MENU -->
+      </div>
+    <!-- GROUP_SIDEBAR -->
     </div>
 
-    <div class="col-md-9 well group_content">
-      <% if member?(@group) %>
-      <% else %>
-        <div class="jumbotron"><h3>Apenas membros possuem acesso a este conteúdo</h3></div>
-      <% end %>
-    <!--COL-MD-3 -->
-    </div>
-
-  <!-- ROW -->
+  <!--COL-MD-3 -->
   </div>
-<!-- CONTAINER -->
+
+  <div class="col-md-9 well group_content" id="div_id">
+    <% if member?(@group) %>
+    <% else %>
+      <div class="jumbotron"><h3>Apenas membros possuem acesso a este conteúdo</h3></div>
+    <% end %>
+  <!--COL-MD-3 -->
+  </div>
+
+<!-- ROW -->
 </div>

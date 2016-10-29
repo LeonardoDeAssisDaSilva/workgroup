@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :members, :dependent => :destroy
   has_many :groups, through: :members
+  default_scope -> { order(created_at: :desc) }
 
   attr_accessor :remember_token, :activation_token
 

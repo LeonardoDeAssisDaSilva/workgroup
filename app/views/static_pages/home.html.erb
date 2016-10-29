@@ -1,7 +1,5 @@
-<div class="center jumbotron">
-  <h1> <%= APP_CONFIG['default_title'] %></h1>
-  <h2>
-    Página inicial...
-  </h2>
-  <%= link_to "Cadastre-se!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+<% if logged_in? %>
+  <%= render 'logged-home' %>
+<% else %>
+  <%= render 'signup-home' %>
+<% end %>
