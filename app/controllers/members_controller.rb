@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
 
+
   def index
     @members = Member.where("group_id = ?", params[:group_id]).paginate(page: params[:page])
 
@@ -9,13 +10,14 @@ class MembersController < ApplicationController
   def create
     unless member?(params[:group_id])
       @member = current_user.members.build(group_id: params[:group_id],
-                                           user_id: current_user,
+                                           user_id: current_user.id,
                                            admin: false)
       if @member.save
         flash[:success] = "Novo membro adicionado."
         redirect_to group_path(params[:group_id])
       else
         flash[:danger] = "Por favor, tente novamente."
+        #flash[:danger] = @member.inspect
         redirect_to group_path(params[:group_id])
       end
     end
@@ -36,4 +38,6 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:group, :user)
     end
+
+
 end
