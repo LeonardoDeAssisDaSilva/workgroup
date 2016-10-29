@@ -26,7 +26,11 @@ Descrição: <%= @group.description %>
           <li class="active"><a href="#">Fórum</a></li>
           <li><%= link_to "Membros",  group_members_path(@group) %></li>
           <% if member?(@group) %>
-              <li><%= link_to "Deixar grupo",  group_member_path(@group), method: :delete %></li>
+              <li>
+                <%= link_to "Deixar grupo",  group_member_path(@group),
+                                             method: :delete,
+                                             data: { confirm: "Você realmente deseja deixar este grupo?" } %>
+              </li>
           <% else %>
             <li><%= link_to "Participar",  group_members_path(@group), method: :post %></li>
           <% end %>

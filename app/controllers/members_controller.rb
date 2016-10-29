@@ -18,10 +18,14 @@ class MembersController < ApplicationController
     end
   end
 
-  def destroy
-    Member.find_by!(params[:group_id], current_user.id).delete
-    flash[:success] = "Você deixou este grupo."
-    redirect_to group_path
+  def destroy(user: current_user)
+    if current_user?(user) || current_user.members.find_by(group_id: params[:group_id]).admin?
+      Member.find_by!(group_id: params[:id], user_id: user.id).delete
+      flash[:success] = "Operação realizada com sucesso."
+      redirect_to request.referrer || root_url
+    else
+      flash[:error] = "Você não possui autorização para realizar esta operação!"
+    end
   end
 
   private
