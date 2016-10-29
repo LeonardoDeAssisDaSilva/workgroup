@@ -9,9 +9,9 @@
 
 .group_information {
   word-wrap: break-word;
+  text-align: center;
 
   .group_name {
-    text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
   }
@@ -23,6 +23,10 @@
 
 .group_content {
   height: 600px;
+
+  .jumbotron {
+    text-align: center;
+  }
 }
 
 /* Groups index */

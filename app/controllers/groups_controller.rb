@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @members = Member.where("group_id = ?", params[:id]).paginate(page: params[:page])
   end
 
   def new

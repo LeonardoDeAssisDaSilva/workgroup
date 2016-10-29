@@ -12,7 +12,7 @@ crumb :group do |g|
 end
 
 crumb :users do
-  link "Todos os usuários", groups_path
+  link "Todos os usuários", users_path
 end
 
 crumb :user do |u|

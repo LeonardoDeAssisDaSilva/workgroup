@@ -24,8 +24,8 @@ Descrição: <%= @group.description %>
 
       <div class="group_menu">
         <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#">Fórum</a></li>
-          <li><%= link_to "Membros",  group_members_path(@group) %></li>
+          <li class="active"><a  data-toggle="pill" href="#group_forum">Fórum</a></li>
+          <li><a data-toggle="pill" href="#group_members">Membros</a></li>
           <% if member?(@group) %>
               <li>
                 <%= link_to "Deixar grupo",  group_member_path(@group),
@@ -44,12 +44,21 @@ Descrição: <%= @group.description %>
   <!--COL-MD-3 -->
   </div>
 
-  <div class="col-md-9 well group_content" id="div_id">
+  <div class="col-md-9 well group_content tab-content" id="div_id">
     <% if member?(@group) %>
+      <div class="tab-pane fade in active" id="group_forum">
+        <div class="jumbotron"><h3>Fórum</h3></div>
+        <!-- GROUP_FORUM -->
+      </div>
+
+      <div class="tab-pane fade" id="group_members">
+        <%= render :file => '/members/index' %>
+        <!-- GROUP_MEMBERS -->
+      </div>
     <% else %>
       <div class="jumbotron"><h3>Apenas membros possuem acesso a este conteúdo</h3></div>
     <% end %>
-  <!--COL-MD-3 -->
+  <!-- GROUP_CONTENT -->
   </div>
 
 <!-- ROW -->
