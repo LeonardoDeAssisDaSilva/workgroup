@@ -34,12 +34,28 @@ textarea {
   }
 }
 
+.circle{
+  border-radius: 50%;
+
+}
+
 .item{
   max-width: 80%;
   display:inline-block;
   text-align: left;
   margin: 5px 20px 0px 20px;
   color: $gray-light;
+}
+
+.jumbotron.narrower {
+  padding-top: 10px;
+  height: 80px;
+  text-align: center;
+
+}
+
+#main-container{
+  margin-top: 70px;
 }
 
 /* typography */
@@ -70,10 +86,6 @@ p {
   text-align: justify;
 }
 
-#main-container{
-  margin-top: 70px;
-}
-
 /* header */
 
 #logo {
@@ -89,10 +101,6 @@ p {
     color: white;
     text-decoration: none;
   }
-}
-
-.narrow-page-header{
-  max-height: 10%;
 }
 
 /* footer */

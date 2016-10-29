@@ -3,7 +3,7 @@
 <p>Área de interesse: <%= @group.area %><br>
 Descrição: <%= @group.description %>
 </p>-->
-
+<% provide(:title, @group.name) %>
 <% breadcrumb :group, @group %>
 
 <div class="container row">
@@ -26,6 +26,9 @@ Descrição: <%= @group.description %>
         <ul class="nav nav-pills nav-stacked">
           <li class="active"><a  data-toggle="pill" href="#group_forum">Fórum</a></li>
           <li><a data-toggle="pill" href="#group_members">Membros</a></li>
+          <% if admin?(@group) %>
+              <li><a data-toggle="pill" href="#group_configurations">Configurações</a></li>
+          <% end %>
           <% if member?(@group) %>
               <li>
                 <%= link_to "Deixar grupo",  group_member_path(@group),
@@ -47,13 +50,18 @@ Descrição: <%= @group.description %>
   <div class="col-md-9 well group_content tab-content" id="div_id">
     <% if member?(@group) %>
       <div class="tab-pane fade in active" id="group_forum">
-        <div class="jumbotron"><h3>Fórum</h3></div>
+        <div class="jumbotron narrower"><h3>Fórum</h3></div>
         <!-- GROUP_FORUM -->
       </div>
 
       <div class="tab-pane fade" id="group_members">
         <%= render :file => '/members/index' %>
         <!-- GROUP_MEMBERS -->
+      </div>
+
+      <div class="tab-pane fade" id="group_configurations">
+        <%= render :file => 'groups/edit' %>
+        <!-- GROUP_CONFIGURATIONS -->
       </div>
     <% else %>
       <div class="jumbotron"><h3>Apenas membros possuem acesso a este conteúdo</h3></div>

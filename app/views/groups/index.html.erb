@@ -2,6 +2,12 @@
 
 <div class="jumbotron">
   <h1>Grupos</h1>
+  <a href="<%= new_group_url %>" >
+  <button type="button" class="btn btn-primary circle pull-right"
+          title="Novo grupo" >
+    <span class="glyphicon glyphicon-plus" ></span>
+  </button>
+</a>
 </div>
 
 <%= will_paginate @groups %>
