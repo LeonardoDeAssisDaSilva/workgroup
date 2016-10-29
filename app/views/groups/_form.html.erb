@@ -1,6 +1,6 @@
-<%= form_for(@group) do |f| %>
+<%= form_for(@group, :remote => ajax_boolean) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  
+
   <%= f.label :name, "Nome do Grupo" %>
   <%= f.text_field :name, class: 'form-control' %>
 
@@ -10,5 +10,5 @@
   <%= f.label :description, "Descrição" %>
   <%= f.text_area :description, class: 'form-control' %>
 
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <%= f.submit button_text, class: "btn btn-primary" %>
 <% end %>

@@ -1,9 +1,10 @@
 <% provide(:title, 'Cadastro de Grupos') %>
 <% provide(:button_text, 'Criar') %>
 
+
 <h1>Novo Grupo</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= render 'form' %>
+    <%= render :partial => 'form', :locals => { button_text: "Criar", ajax_boolean: false} %>
   </div>
 </div>

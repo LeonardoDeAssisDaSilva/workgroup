@@ -8,12 +8,15 @@ class MembersController < ApplicationController
 
   def create
     unless member?(params[:group_id])
-      @member = current_user.members.build(group_id: params[:group_id], user_id: current_user, admin: true)
+      @member = current_user.members.build(group_id: params[:group_id],
+                                           user_id: current_user,
+                                           admin: false)
       if @member.save
         flash[:success] = "Novo membro adicionado."
         redirect_to group_path(params[:group_id])
       else
-        flash[:error] = "Por favor, tente novamente."
+        flash[:danger] = "Por favor, tente novamente."
+        redirect_to group_path(params[:group_id])
       end
     end
   end
@@ -24,7 +27,7 @@ class MembersController < ApplicationController
       flash[:success] = "Operação realizada com sucesso."
       redirect_to request.referrer || root_url
     else
-      flash[:error] = "Você não possui autorização para realizar esta operação!"
+      flash[:danger] = "Você não possui autorização para realizar esta operação!"
     end
   end
 

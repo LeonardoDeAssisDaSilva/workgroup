@@ -34,7 +34,10 @@ class GroupsController < ApplicationController
       flash[:success] = "Grupo atualizado"
       redirect_to @group
     else
-      render 'edit'
+      respond_to do |format|
+        format.js
+        format.html
+      end
     end
   end
 
