@@ -1,5 +1,11 @@
-<%= form_for(@group, :remote => ajax_boolean) do |f| %>
+<%= form_for(@group, html: { multipart: true }, :remote => ajax_boolean) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <span class="picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
 
   <%= f.label :name, "Nome do Grupo" %>
   <%= f.text_field :name, class: 'form-control' %>
@@ -14,7 +20,17 @@
   <%= f.label :private, class: "checkbox inline" do %>
     <%= f.check_box :private, {}, "true", "false" %>
     <span>Privado</span>
-  <% end %><br/>
+  <% end %>
+  <br/>
 
   <%= f.submit button_text, class: "btn btn-primary" %>
 <% end %>
+
+<script type="text/javascript">
+  $('#group_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Tamanho máximo de arquivo é 5MB. Por favor escolha um arquivo menor.');
+    }
+  });
+</script>

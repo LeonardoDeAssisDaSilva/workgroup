@@ -30,6 +30,12 @@
   }
 }
 
+.group-img {
+  width: 140px;
+  height: 140px;
+  background-color: white;
+}
+
 /* Groups index */
 
 .groups {
@@ -37,10 +43,11 @@
   text-align: center;
   margin-top: 50px;
 
-  img {
+  .group-img {
     width: 140px;
     height: 140px;
   }
+
   .left {
     text-align: left;
   }

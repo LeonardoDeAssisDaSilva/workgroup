@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-  before_action :logged_in_user, only: [:show, :new, :create]
 
   def index
     if params[:"srch-term"]
@@ -19,6 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def create
+    default_values
     @group = Group.new(group_params)
     if @group.save
       @group.members.create!(user: current_user, admin: true)
@@ -48,7 +48,11 @@ class GroupsController < ApplicationController
   private
 
     def group_params
-      params.require(:group).permit(:name, :area, :description, :private)
+      params.require(:group).permit(:picture, :name, :area, :description, :private)
+
     end
 
+    def default_values
+      params[:picture] ||= "/uploads/group/picture/default/group.png"
+    end
 end

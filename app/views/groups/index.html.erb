@@ -20,7 +20,7 @@
       <% group_slice.each do |group| %>
 
         <div class="col-lg-4 groups">
-          <img class="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
+          <%= image_tag group.picture.url, class: "img-circle group-img" %>
           <h2><%= group.name %></h2>
           <p class="area"><strong><%= group.area %></strong></p>
           <p class="left description"><%= group.description %></p>
