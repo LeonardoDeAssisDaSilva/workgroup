@@ -2,7 +2,11 @@ class GroupsController < ApplicationController
   before_action :logged_in_user, only: [:show, :new, :create]
 
   def index
-    @groups = Group.paginate(page: params[:page], :per_page => 15)
+    if params[:"srch-term"]
+      @groups = Group.search(params[:"srch-term"]).order("created_at DESC").paginate(page: params[:page], :per_page => 15)
+    else
+      @groups = Group.paginate(page: params[:page], :per_page => 15)
+    end
   end
 
   def show
@@ -44,7 +48,7 @@ class GroupsController < ApplicationController
   private
 
     def group_params
-      params.require(:group).permit(:name, :area, :description)
+      params.require(:group).permit(:name, :area, :description, :private)
     end
 
 end

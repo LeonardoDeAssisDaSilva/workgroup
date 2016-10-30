@@ -10,5 +10,11 @@
   <%= f.label :description, "Descrição" %>
   <%= f.text_area :description, class: 'form-control' %>
 
+  <br/>
+  <%= f.label :private, class: "checkbox inline" do %>
+    <%= f.check_box :private, {}, "true", "false" %>
+    <span>Privado</span>
+  <% end %><br/>
+
   <%= f.submit button_text, class: "btn btn-primary" %>
 <% end %>

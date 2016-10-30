@@ -70,4 +70,8 @@ class User < ApplicationRecord
       self.email = email.downcase
     end
 
+    # Search method
+    def self.search(search)
+      where("name LIKE ? ", "%#{search}%")
+    end
 end

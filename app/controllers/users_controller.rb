@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-    @users = User.where(activated: true).paginate(page: params[:page], :per_page => 15)
+    if params[:"srch-term"]
+      @users = User.where(activated: true).search(params[:"srch-term"]).order("created_at
+        DESC").paginate(page: params[:page], :per_page => 15)
+    else
+      @users = User.where(activated: true).paginate(page: params[:page], :per_page => 15)
+    end
   end
 
   def show
