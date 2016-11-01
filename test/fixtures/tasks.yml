@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member_id: one
+  title: MyString
+  priority: 1
+  deadline: 2016-10-31 15:29:26
+  description: MyText
+
+two:
+  member_id: two
+  title: MyString
+  priority: 1
+  deadline: 2016-10-31 15:29:26
+  description: MyText

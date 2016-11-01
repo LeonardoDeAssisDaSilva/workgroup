@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :users
   resources :groups do
     resources :members, only: [:index, :create, :destroy]
+    resources :tasks
   end
   resources :account_activations, only: [:edit]
 end

@@ -1,0 +1,18 @@
+<div class="jumbotron narrower">
+  <h3>Tarefas</h3>
+  <a href="<%= new_group_task_path(@group) %>"  >
+    <button type="button" class="btn btn-primary circle pull-right add-button"
+            title="Novo grupo">
+      <span class="glyphicon glyphicon-plus" ></span>
+    </button>
+  </a>
+</div>
+
+<%= will_paginate @tasks %>
+
+<ul class="list">
+
+  <%= render @tasks %>
+</ul>
+
+<%= will_paginate @tasks %>

@@ -11,7 +11,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @members = Member.where("group_id = ?", params[:id]).paginate(page: params[:page])
+    @members = @group.members.paginate(page: params[:page], :per_page => 15)
+    @tasks = @group.tasks.paginate(page: params[:page], :per_page => 15)
   end
 
   def new

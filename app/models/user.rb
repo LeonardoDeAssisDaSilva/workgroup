@@ -4,7 +4,6 @@ class User < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
 
   attr_accessor :remember_token, :activation_token
-
   before_save   :downcase_email
   before_save :create_activation_digest
 

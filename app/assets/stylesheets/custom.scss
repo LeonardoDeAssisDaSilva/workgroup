@@ -227,8 +227,15 @@ input {
 
 .add-button{
   position: relative;
+  width: 40px;
+  height: 40px;
   right: 5px;
-  bottom: 15px;
+  bottom: 30px;
+
+  span{
+    position: absolute;
+    margin: 10px 0px 0px -6px;
+  }
 }
 
 /* Users index */

@@ -50,12 +50,12 @@ Descrição: <%= @group.description %>
   <div class="col-md-9 well group_content tab-content" id="div_id">
     <% if member?(@group.id) %>
       <div class="tab-pane fade in active" id="group_forum">
-        <div class="jumbotron narrower"><h3>Fórum</h3></div>
+        <%= render :file => '/tasks/_index' %>
         <!-- GROUP_FORUM -->
       </div>
 
       <div class="tab-pane fade" id="group_members">
-        <%= render :file => '/members/index' %>
+        <%= render :file => '/members/_index' %>
         <!-- GROUP_MEMBERS -->
       </div>
 
