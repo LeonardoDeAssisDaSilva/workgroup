@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* Groups Show*/
+
 .group_pic {
   text-align: center;
 }
@@ -24,6 +25,7 @@
 .group_content {
   min-height: 600px;
   height: auto;
+  padding: 5px !important;
 
   .jumbotron {
     text-align: center;
@@ -35,7 +37,14 @@
 .groups {
   height: 410px;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 40px;
+
+  /* TESTE */
+  // margin: 5px;
+  // padding: 10px;
+  // border: 1px solid #eaeaea;
+  // border-radius: 5px;
+  /* TESTE */
 
   img {
     width: 140px;

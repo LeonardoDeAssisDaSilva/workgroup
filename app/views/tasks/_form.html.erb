@@ -8,7 +8,8 @@
   <%= f.text_field :title, class: 'form-control' %>
 
   <%= f.label :priority, "Prioridade" %>
-  <%= f.select :priority, options_for_select(priorities_options,  selected_key = "Normal"), class: 'form-control' %>
+  <%= f.select(:priority, options_for_select(priorities_options, selected_key = "Normal"),
+                          {}, { class: 'form-control' }) %>
 
   <%= f.label :deadline, "Data de encerramento" %>
   <%= f.datetime_field :deadline, class: 'form-control' %>
@@ -16,5 +17,5 @@
   <%= f.label :description, "Descrição" %>
   <%= f.text_area :description, class: 'form-control' %>
 
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <%= f.submit button_text, class: "btn btn-primary" %>
 <% end %>

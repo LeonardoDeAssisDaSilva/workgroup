@@ -1,5 +1,6 @@
 <tr class="panel panel-<%= task.priority %>" >
-  <td><%= link_to task.title, group_task_path(@group, id: task.id) %></td>
-  <td><%= task.deadline.to_formatted_s(:long) %></td>
-  <td><%= task.priority %></td>
+  <td class="col-sm-3 col-md-3"><%= link_to task.title, group_task_path(@group, id: task.id) %></td>
+  <td class="col-sm-3 col-md-3"><%= task.deadline.to_formatted_s(:long) %></td>
+  <td class="col-sm-1 col-md-1"><%= task.priority %></td>
+  <td class="col-sm-1 col-md-1"><%= 0 %></td>
 </tr>

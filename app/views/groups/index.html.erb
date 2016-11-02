@@ -11,29 +11,27 @@
 </div>
 
 <%= will_paginate @groups %>
-<div class="container">
 
-  <% @groups.each_slice(3) do |group_slice| %>
+<% @groups.each_slice(3) do |group_slice| %>
 
-    <div class="row">
+  <div class="row container">
 
-      <% group_slice.each do |group| %>
+    <% group_slice.each do |group| %>
 
-        <div class="col-lg-4 groups">
-          <img class="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
-          <h2><%= group.name %></h2>
-          <p class="area"><strong><%= group.area %></strong></p>
-          <p class="left description"><%= group.description %></p>
-          <p>
-            <%= link_to "Ver mais", group, {:class => "btn btn-default", :role => "button"}%>
-          </p>
-        </div>
+      <div class="col-lg-4 groups" >
+        <img class="img-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Flag_of_Afghanistan_(1880%E2%80%931901).svg/2000px-Flag_of_Afghanistan_(1880%E2%80%931901).svg.png">
+        <h2><%= group.name %></h2>
+        <p class="area"><strong><%= group.area %></strong></p>
+        <p class="left description"><%= group.description %></p>
+        <p>
+          <%= link_to "Ver mais", group, {:class => "btn btn-default", :role => "button"}%>
+        </p>
+      </div>
 
-      <% end %>
+    <% end %>
 
-    </div>
+  </div>
 
-  <% end %>
+<% end %>
 
-</div>
 <%= will_paginate @groups %>

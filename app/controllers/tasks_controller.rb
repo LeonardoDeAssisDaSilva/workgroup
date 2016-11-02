@@ -2,8 +2,8 @@ class TasksController < ApplicationController
   helper_method :author
 
   def new
-    group = Group.find(params[:group_id])
-    @task = Task.new
+    member = current_user.members.find_by(group_id: params[:group_id])
+    @task = member.tasks.build
   end
 
   def create
@@ -27,6 +27,6 @@ class TasksController < ApplicationController
     end
 
     def author
-      @task.member.user.name
+      @task.member.user
     end
 end

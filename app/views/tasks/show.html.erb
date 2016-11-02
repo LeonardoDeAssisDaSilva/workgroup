@@ -1,9 +1,17 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= @task.title %></h3>
-    <span class="pull-right"><%= author %></span>
+<% breadcrumb :group_task, @task %>
+
+<div class="panel panel-<%= @task.priority %>">
+  <div class="panel-heading panel-<%= @task.priority %> ">
+    <span>
+      <%= "#{@task.created_at} | " %>
+      <%= link_to author.name, author %>
+    </span>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" style="background-color: white;">
+    <div class="page-header" >
+      <h1><%= @task.title %></h1>
+    </div>
+
     <label>Entrega: </label>
     <p><%= @task.deadline.to_formatted_s(:long) %></p>
 
@@ -12,5 +20,11 @@
 
     <label>Descrição: </label>
     <p><%= @task.description %></p>
+
+    <% if @task.updated_at != @task.created_at %>
+      <div class="panel-footer clearfix">
+        <span class="pull-right"><%= "Editado em: #{@task.updated_at}" %></span>
+      </div>
+    <% end %>
   </div>
 </div>
