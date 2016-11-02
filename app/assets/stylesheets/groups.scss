@@ -35,15 +35,18 @@
 /* Groups index */
 
 .groups {
-  height: 410px;
+  max-height: 410px;
   text-align: center;
-  margin-top: 40px;
 
   /* TESTE */
-  // margin: 5px;
-  // padding: 10px;
-  // border: 1px solid #eaeaea;
-  // border-radius: 5px;
+  .spacer{
+    width: 100%;
+    height: 100%;
+    margin: 20px 0px;
+    padding: 10px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+  }
   /* TESTE */
 
   img {
@@ -59,8 +62,7 @@
     margin-right: auto;
     left: 35%;
     right: 35%;
-    bottom: 0;
-    margin-bottom: 5px;
+    bottom: 5px;
   }
 
   p{
