@@ -10,9 +10,13 @@
 
 <%= will_paginate @tasks %>
 
-<ul class="list">
-
+<table class="table" id="tasks-table">
+  <tr>
+    <th>Título</th>
+    <th>Entrega</th>
+    <th>Prioridade</th>
+  </tr>
   <%= render @tasks %>
-</ul>
+</table>
 
 <%= will_paginate @tasks %>

@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @task.title %></h3>
+    <span class="pull-right"><%= author %></span>
+  </div>
+  <div class="panel-body">
+    <label>Entrega: </label>
+    <p><%= @task.deadline.to_formatted_s(:long) %></p>
+
+    <label>Prioridade: </label>
+    <p><%= @task.priority %></p>
+
+    <label>Descrição: </label>
+    <p><%= @task.description %></p>
+  </div>
+</div>

@@ -1,11 +1,6 @@
 class MembersController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
 
-
-  def index
-    @members = Member.where("group_id = ?", params[:group_id]).paginate(page: params[:page])
-  end
-
   def create
     unless member?(params[:group_id])
       @member = current_user.members.build(group_id: params[:group_id],
@@ -37,6 +32,4 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:group, :user)
     end
-
-
 end

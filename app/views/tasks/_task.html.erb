@@ -1,6 +1,5 @@
-<div class=<%= "panel panel-#{task.priority}" %> >
-  <li>
-    <%= task.title %>
-    <%= task.deadline %>
-  </li>
-</div>
+<tr class="panel panel-<%= task.priority %>" >
+  <td><%= link_to task.title, group_task_path(@group, id: task.id) %></td>
+  <td><%= task.deadline.to_formatted_s(:long) %></td>
+  <td><%= task.priority %></td>
+</tr>

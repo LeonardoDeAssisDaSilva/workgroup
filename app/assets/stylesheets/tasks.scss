@@ -1,3 +1,39 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* variables */
+
+$light-red: #ef5350;
+$light-orange: #ffab91;
+$light-yellow: #ffecb3;
+
+
+/* task panel */
+
+#tasks-table {
+  tr:hover {
+    border: 1px solid black;
+  }
+  td a {
+     display: block;
+     text-decoration: none;
+     color: black;
+  }
+}
+
+.panel-Baixa {
+  background-color: white;
+}
+
+.panel-Normal {
+  background-color: $light-yellow;
+}
+
+.panel-Alta {
+  background-color: $light-orange;
+}
+
+.panel-Máxima {
+  background-color: $light-red
+}
