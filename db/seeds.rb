@@ -32,12 +32,12 @@ Group.create!(name: "Banco de Dados",
 Group.create!(name: "Engenharia de Software",
               area: "Computação",
               description: "Estudos sobre a displina",
-              private: :false)
+              private: false)
 
 Group.create!(name: "Projeto e Análise de algoritmos",
               area: "Computação",
               description: "Estudos sobre a displina",
-              private: :true)
+              private: true)
 
 20.times do |n|
   name = Faker::Company.name
@@ -46,7 +46,7 @@ Group.create!(name: "Projeto e Análise de algoritmos",
   Group.create!(name: name,
                 area: area,
                 description: description,
-                private: :false)
+                private: false)
 end
 
 
