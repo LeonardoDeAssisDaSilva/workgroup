@@ -18,6 +18,7 @@ class MembersController < ApplicationController
   end
 
   def destroy(user: current_user)
+    debugger
     if current_user?(user) || current_user.admin?(params[:id])
       Member.find_by!(group_id: params[:id], user_id: user.id).delete
       flash[:success] = "Operação realizada com sucesso."
