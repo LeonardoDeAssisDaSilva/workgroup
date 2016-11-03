@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  member_id: one
   title: MyString
-  priority: 1
-  deadline: 2016-10-31 15:29:26
+  priority: MyString
+  deadline: 2016-11-03 19:34:30
   description: MyText
+  group: one
+  user: one
 
 two:
-  member_id: two
   title: MyString
-  priority: 1
-  deadline: 2016-10-31 15:29:26
+  priority: MyString
+  deadline: 2016-11-03 19:34:30
   description: MyText
+  group: two
+  user: two
