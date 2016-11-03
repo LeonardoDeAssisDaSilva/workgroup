@@ -11,21 +11,37 @@ $light-yellow: #ffecb3;
 
 /* task panel */
 
-#tasks-table {
+table#tasks-table {
+
   tr:not(:first-child):hover {
     border: 1px solid black;
-    background-color: #337ab7;
-    a, td{
+    background-color: #337ab7 !important;
+    td{
       color: white;
     }
   }
-  td:not(:first-child), th{
+  td:not(:nth-child(2)), th:not(:nth-child(2)){
     text-align: center;
   }
   td a {
      display: block;
      text-decoration: none;
      color: inherit;
+  }
+
+  button {
+    margin: 0px;
+    background-color: inherit;
+    height: 100%;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    ul, li {
+      margin: 0px;
+      background-color: white;
+      color: black;
+    }
   }
 }
 

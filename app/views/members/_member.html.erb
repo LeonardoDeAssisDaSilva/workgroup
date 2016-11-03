@@ -1,5 +1,16 @@
-<div class="panel panel-default" style="margin: 5px; padding-left: 10px;">
-  <li>
+<div class="row panel panel-default" >
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <span class="glyphicon glyphicon-option-vertical" ></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">Action</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">Separated link</a></li>
+    </ul>
+  </div>
+
+  <li class="col-sm-11">
     <%= gravatar_for member.user, size: 50 %>
     <%= link_to  member.user.name,  member.user %>
   </li>
