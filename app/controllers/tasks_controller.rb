@@ -2,13 +2,13 @@ class TasksController < ApplicationController
   helper_method :author
 
   def new
-    member = current_user.members.find_by(group_id: params[:group_id])
-    @task = member.tasks.build
+    group = Group.find(params[:group_id])
+    @task = group.tasks.build
   end
 
   def create
     group = Group.find(params[:group_id])
-    @task = Task.new(task_params)
+    @task = group.tasks.new(task_params)
     if @task.save
       redirect_to group
     else
@@ -23,10 +23,11 @@ class TasksController < ApplicationController
   private
 
     def task_params
-      params.require(:task).permit(:member_id, :title, :priority, :deadline, :description)
+      params.require(:task).permit(:title, :priority, :deadline,
+                                   :description, :group_id, :user_id)
     end
 
     def author
-      @task.member.user
+      @task.user
     end
 end

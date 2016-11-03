@@ -1,15 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
+############################## USERS ##############################
 User.create!(name:  "Example User",
              email: "example@email.com",
-             password:              "foobar",
-             password_confirmation: "foobar",
+             password:              "123456",
+             password_confirmation: "123456",
              activated: true,
              activated_at: Time.zone.now)
 
@@ -27,4 +20,82 @@ User.create!(name:  "Example User",
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
+end
+
+
+############################## GROUPS ##############################
+Group.create!(name: "Banco de Dados",
+              area: "Computação",
+              description: "Estudos sobre a displina",
+              private: false)
+
+Group.create!(name: "Engenharia de Software",
+              area: "Computação",
+              description: "Estudos sobre a displina",
+              private: false)
+
+Group.create!(name: "Projeto e Análise de algoritmos",
+              area: "Computação",
+              description: "Estudos sobre a displina",
+              private: true)
+
+20.times do |n|
+  name = Faker::Company.name
+  area = Faker::Company.industry
+  description = Faker::Company.buzzword
+  Group.create!(name: name,
+                area: area,
+                description: description,
+                private: false)
+end
+
+
+############################## MEMBERS ##############################
+Member.create!(group_id: Group.first.id,
+               user_id: User.first.id,
+               admin: true)
+
+Member.create!(group_id: Group.second.id,
+               user_id: User.first.id,
+               admin: true)
+
+for n in 1...20
+  Member.create!(group_id: Group.first.id,
+                 user_id: User.find(n).id,
+                 admin: false)
+end
+
+for n in 1...20
+  Member.create!(group_id: Group.second.id,
+                 user_id: User.find(n).id,
+                 admin: false)
+end
+
+############################## TASKS ##############################
+@priorities = %w[Baixa Normal Alta Máxima]
+
+for n in 1...20
+  title = Faker::Company.bs
+  priority = @priorities[rand(4)]
+  deadline = Faker::Time.forward(30, :morning)
+  description = Faker::Hacker.say_something_smart
+  Task.create!(title: title,
+               priority: priority,
+               deadline: deadline,
+               description: description,
+               group_id: Group.first.id,
+               user_id: User.find(n).id)
+end
+
+for n in 1...20
+  title = Faker::Company.bs
+  priority = @priorities[rand(4)]
+  deadline = Faker::Time.forward(30, :morning)
+  description = Faker::Hacker.say_something_smart
+  Task.create!(title: title,
+               priority: priority,
+               deadline: deadline,
+               description: description,
+               group_id: Group.second.id,
+               user_id: User.find(n).id)
 end
