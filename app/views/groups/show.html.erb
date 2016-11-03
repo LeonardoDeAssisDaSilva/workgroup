@@ -24,8 +24,8 @@ Descrição: <%= @group.description %>
 
       <div class="group_menu">
         <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a  data-toggle="pill" href="#group_forum">Fórum</a></li>
-          <li><a data-toggle="pill" href="#group_members">Membros</a></li>
+          <li class="active"><a data-toggle="tab" href="#group_forum">Fórum</a></li>
+          <li><a data-toggle="tab" href="#group_members">Membros</a></li>
           <% if admin?(@group.id) %>
               <li><a data-toggle="pill" href="#group_configurations">Configurações</a></li>
           <% end %>
@@ -49,26 +49,43 @@ Descrição: <%= @group.description %>
 
   <div class="col-sm-9 well group_content tab-content" id="div_id">
     <% if member?(@group.id) %>
-      <div class="tab-pane fade in active" id="group_forum">
+      <div role="tabpanel" class="tab-pane fade in active" id="group_forum">
         <%= render :file => '/tasks/_index' %>
         <!-- GROUP_FORUM -->
       </div>
 
-      <div class="tab-pane fade" id="group_members">
+      <div role="tabpanel" class="tab-pane fade in" id="group_members">
         <%= render :file => '/members/_index' %>
         <!-- GROUP_MEMBERS -->
       </div>
 
-      <div class="tab-pane fade" id="group_configurations">
+      <div role="tabpanel" class="tab-pane fade in" id="group_configurations">
         <%= render :file => 'groups/_edit' %>
-        <%#= yield :edit_group %>
         <!-- GROUP_CONFIGURATIONS -->
       </div>
     <% else %>
-      <div class="jumbotron"><h3>Apenas membros possuem acesso a este conteúdo</h3></div>
+      <div class="jumbotron">
+        <h3>Apenas membros possuem acesso a este conteúdo</h3>
+      </div>
     <% end %>
   <!-- GROUP_CONTENT -->
   </div>
 
 <!-- ROW -->
 </div>
+
+
+<!-- <script type="text/javascript">
+$(document).ready(function() {
+    if(location.hash) {
+        $('a[href=' + location.hash + ']').tab('show');
+    }
+    $(document.body).on("click", "a[data-toggle]", function(event) {
+        location.hash = this.getAttribute("href");
+    });
+});
+$(window).on('popstate', function() {
+    var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
+    $('a[href=' + anchor + ']').tab('show');
+});
+</script> -->

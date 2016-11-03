@@ -162,7 +162,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    route_translator (5.0.2)
+    route_translator (5.0.3)
       actionpack (>= 5.0.0, < 5.1)
       activesupport (>= 5.0.0, < 5.1)
     ruby-progressbar (1.8.1)
