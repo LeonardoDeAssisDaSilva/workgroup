@@ -17,14 +17,26 @@ class MembersController < ApplicationController
     end
   end
 
-  def destroy(user: current_user)
-    debugger
-    if current_user?(user) || current_user.admin?(params[:id])
-      Member.find_by!(group_id: params[:id], user_id: user.id).delete
+  def update
+    member = Member.find(params[:id])
+    if admin?(params[:group_id]) && member.update_attributes(admin: true)
+      flash[:success] = "Operação realizada com sucesso."
+      redirect_to Group.find(params[:group_id])
+      return
+    end
+    flash[:danger] = "Você não possui autorização para realizar esta operação!"
+    redirect_to Group.find(params[:group_id])
+  end
+
+  def destroy
+    member = Member.find(params[:id])
+    if current_user?(member.user) || admin?(params[:group_id])
+      member.delete
       flash[:success] = "Operação realizada com sucesso."
       redirect_to request.referrer || root_url
     else
       flash[:danger] = "Você não possui autorização para realizar esta operação!"
+      redirect_to member.group
     end
   end
 

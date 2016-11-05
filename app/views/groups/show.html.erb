@@ -31,7 +31,7 @@ Descrição: <%= @group.description %>
           <% end %>
           <% if member?(@group.id) %>
               <li>
-                <%= link_to "Deixar grupo",  group_member_path(@group),
+                <%= link_to "Deixar grupo",  group_member_path(@group, @group.members.find_by(user_id: current_user.id)),
                                              method: :delete,
                                              data: { confirm: "Você realmente deseja deixar este grupo?" } %>
               </li>

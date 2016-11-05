@@ -4,7 +4,6 @@ class Task < ApplicationRecord
 
   validates :user_id,   presence: true
   validates :group_id,   presence: true
-  validates_uniqueness_of :user_id, :scope => :group_id
   validates :title,       presence: true
   validates :priority,    presence: true
   validates :deadline,    presence: true

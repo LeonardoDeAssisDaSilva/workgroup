@@ -4,11 +4,12 @@
       <span class="glyphicon glyphicon-option-vertical" ></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><%= link_to "Tornar administrador", '#' %></li>
-      <li><%= link_to "Expulsar", group_member_path(@group, :anchor => member),
-                                   method: :delete,
-
-                                   data: { confirm: "Você realmente deseja expulsar este membro?" } %></li>
+      <li><%= link_to "Favoritar", '#' %></li>
+      <li><%= link_to "Tornar administrador", group_member_path(@group, member),
+                                              method: :patch %></li>
+      <li><%= link_to "Expulsar", group_member_path(@group, member),
+                                  method: :delete,
+                                  data: { confirm: "Você realmente deseja expulsar este membro?" } %></li>
     </ul>
   </div>
 

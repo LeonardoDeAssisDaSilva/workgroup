@@ -1,7 +1,5 @@
-<%= form_for(@task, :url => {:controller => "tasks", :action => "create"}) do |f| %>
+<%= form_for(@task, :url => {:controller => "tasks", :action => action_type}) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-
-  <%= f.hidden_field :user_id, value: current_user.id %>
 
   <%= f.label :title, "Título" %>
   <%= f.text_field :title, class: 'form-control' %>
