@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   delete    '/logout',            to: 'sessions#destroy'
   get       'account_activations/:activation_token/edit',
             to: 'account_activations#edit', as:  'edit_account_activation'
-  patch    '/groups/:group_id',  to: 'members#update'
+  patch     '/groups/:group_id',  to: 'members#update'
+  get       '/groups/:group_id/tasks/:id', to: 'comments#index', as: 'task_comments'
 
   resources :users
   resources :groups do

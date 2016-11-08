@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    @comments = @task.comments
+    @comments = @task.comments.paginate(page: params[:page], :per_page => 15)
   end
 
   def new

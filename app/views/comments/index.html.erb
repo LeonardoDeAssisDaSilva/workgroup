@@ -1,0 +1,41 @@
+<% breadcrumb :group_task, @task %>
+
+<div class="panel panel-<%= @task.priority %>">
+  <div class="panel-heading panel-<%= @task.priority %> ">
+    <span>
+      <%= "#{@task.created_at} | " %>
+      <%= link_to author.name, author %>
+    </span>
+  </div>
+  <div class="panel-body" style="background-color: white;">
+    <% if @task.updated_at != @task.created_at %>
+      <div class="panel-footer clearfix">
+        <span class="pull-right"><%= "Editado em: #{@task.updated_at}" %></span>
+      </div>
+    <% end %>
+    <div class="page-header" >
+      <h1><%= @task.title %></h1>
+    </div>
+
+    <label>Entrega: </label>
+    <p><%= @task.deadline.to_formatted_s(:long) %></p>
+
+    <label>Prioridade: </label>
+    <p><%= @task.priority %></p>
+
+    <label>Descrição: </label>
+    <p><%= @task.description %></p>
+  </div>
+  <div class="panel-footer clearfix">
+      <span class="panel-title ">
+        <a class="pull-right" data-toggle="collapse" href="#collapseOne">
+          Responder
+        </a>
+      </span>
+      <br>
+      <div id="collapseOne" class="panel-collapse collapse">
+        <%= render :partial => '/comments/new' %>
+      </div>
+  </div>
+</div>
+<%= render :partial => '/comments/show' %>

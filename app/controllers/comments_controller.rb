@@ -1,11 +1,16 @@
 class CommentsController < ApplicationController
+  def index
+    @task = Task.find(params[:id])
+    @comments = @task.comments.paginate(page: params[:page], :per_page => 15)
+  end
+  
   def create
-
+    debugger
     @comment = Comment.new(comment_params)
-debugger
+    
     if @comment.save
       flash[:success] = "Comentário submetido"
-      redirect_to group_task_path(@comment.task.group.id, @comment.task.id)
+      redirect_to task_comments_path(@comment.task.group.id, @comment.task.id)
     else
       task = Task.find(params[:comment][:task_id])
       flash[:danger] = "Erro ao submeter comentário"
@@ -33,6 +38,11 @@ debugger
   private
 
     def comment_params
-      params.require(:comment).permit(:content, :ancestry, :task_id, :user_id)
+      params[:comment][:ancestry] = nil if params[:comment][:ancestry] == ""
+      params.require(:comment).permit(:task_id, :user_id, :ancestry, :content)
+      
+#       params[:comment].delete_if { |key, value| value == "" }
+#       params[:comment][:ancestry] = nil
+      #params[:comment]
     end
 end
