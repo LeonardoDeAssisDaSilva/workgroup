@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root      'static_pages#home'
-
   get       '/help',              to: 'static_pages#help',    as: 'help'
   get       '/about',             to: 'static_pages#about',   as: 'about'
   get       '/contact',           to: 'static_pages#contact', as: 'contact'
@@ -18,5 +17,6 @@ Rails.application.routes.draw do
     resources :members, only: [:create, :update, :destroy]
     resources :tasks
   end
+  resources :comments, only: [:new, :create]
   resources :account_activations, only: [:edit]
 end

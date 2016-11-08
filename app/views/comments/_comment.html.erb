@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span>
+      <%= "#{comment.created_at} | " %>
+      <%= link_to comment.user.name, comment.user %>
+    </span>
+  </div>
+  <div class="panel-body" style="background-color: white;">
+    <% if @task.updated_at != @task.created_at %>
+      <div class="panel-footer clearfix">
+        <span class="pull-right"><%= "Editado em: #{comment.updated_at}" %></span>
+      </div>
+    <% end %>
+
+    <p><%= comment.content %></p>
+  </div>
+  <div class="panel-footer clearfix">
+      <span class="panel-title ">
+        <a class="pull-right" data-toggle="collapse" href="#collapseOne">
+          Responder
+        </a>
+      </span>
+      <br>
+      <div id="collapseOne" class="panel-collapse collapse">
+        <% parent = comment %>
+        <%= render :partial => '/comments/new' %>
+      </div>
+  </div>
+</div>
