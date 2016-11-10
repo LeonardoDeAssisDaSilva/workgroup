@@ -5,9 +5,8 @@ class CommentsController < ApplicationController
   end
   
   def create
-    debugger
     @comment = Comment.new(comment_params)
-    
+    debugger
     if @comment.save
       flash[:success] = "Comentário submetido"
       redirect_to task_comments_path(@comment.task.group.id, @comment.task.id)
