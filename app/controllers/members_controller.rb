@@ -3,9 +3,13 @@ class MembersController < ApplicationController
 
   def create
     unless member?(params[:group_id])
+      @pending = if (Group.find(params[:group_id]).private?) then true else false end
+
       @member = current_user.members.build(group_id: params[:group_id],
                                            user_id: current_user.id,
-                                           admin: false)
+                                           admin: false,
+                                           pending: @pending)
+                                           
       if @member.save
         flash[:success] = "Novo membro adicionado."
         redirect_to group_path(params[:group_id])

@@ -29,13 +29,13 @@ Descrição: <%= @group.description %>
           <% if admin?(@group.id) %>
               <li><a data-toggle="pill" href="#group_configurations">Configurações</a></li>
           <% end %>
-          <% if member?(@group.id) %>
+          <% if member?(@group.id) && !pending?(@current_member, @group) %>
               <li>
                 <%= link_to "Deixar grupo",  group_member_path(@group, @group.members.find_by(user_id: current_user.id)),
                                              method: :delete,
                                              data: { confirm: "Você realmente deseja deixar este grupo?" } %>
               </li>
-          <% else %>
+          <% elsif !member?(@group.id) && !pending?(@current_member, @group) %>
             <li><%= link_to "Participar",  group_members_path(@group), method: :post %></li>
           <% end %>
         </ul>
@@ -48,7 +48,7 @@ Descrição: <%= @group.description %>
   </div>
 
   <div class="col-sm-9 well group_content tab-content" id="div_id">
-    <% if member?(@group.id) %>
+    <% if member?(@group.id) && !pending?(@current_member, @group) %>
       <div role="tabpanel" class="tab-pane fade in active" id="group_forum">
         <%= render :file => '/tasks/_index' %>
         <!-- GROUP_FORUM -->
@@ -62,6 +62,11 @@ Descrição: <%= @group.description %>
       <div role="tabpanel" class="tab-pane fade in" id="group_configurations">
         <%= render :file => 'groups/_edit' %>
         <!-- GROUP_CONFIGURATIONS -->
+      </div>
+    <% elsif member?(@group.id) && pending?(@current_member, @group) %>
+      <div class="jumbotron">
+        <h3>Seu pedido de participação já foi enviado aos
+          administradores. Aguarde sua aprovação!</h3>
       </div>
     <% else %>
       <div class="jumbotron">

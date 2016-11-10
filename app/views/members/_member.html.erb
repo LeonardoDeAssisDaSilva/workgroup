@@ -15,6 +15,10 @@
 
   <li class="col-sm-11">
     <%= gravatar_for member.user, size: 50 %>
-    <%= link_to  member.user.name,  member.user %>
+    <% if member.pending? %>
+      <%= link_to  member.user.name + " (pendente)", member.user %>
+    <% else %>
+      <%= link_to  member.user.name, member.user %>
+    <% end %>
   </li>
 </div>
