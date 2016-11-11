@@ -1,15 +1,29 @@
+<% if !member.pending? %>
 <div class="row panel panel-default" >
+<% else %>
+<div class="row panel panel-pending" >
+<% end %>
   <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       <span class="glyphicon glyphicon-option-vertical" ></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% if !member.pending? %>
       <li><%= link_to "Favoritar", '#' %></li>
       <li><%= link_to "Tornar administrador", group_member_path(@group, member),
                                               method: :patch %></li>
       <li><%= link_to "Expulsar", group_member_path(@group, member),
                                   method: :delete,
                                   data: { confirm: "Você realmente deseja expulsar este membro?" } %></li>
+      <% else %>
+        <%#verificar se há modo melhor de fazer%>
+        <li><%= link_to "Aceitar",
+                        "/groups/#{@group.id}/members/#{member.id}?admin=#{false}&pending=#{false}",
+                        data: { confirm: "Você realmente deseja aceitar o pedido deste usuário?" } %></li>
+        <li><%= link_to "Recusar", group_member_path(@group, member),
+                                    method: :delete,
+                                    data: { confirm: "Você realmente deseja recusar o pedido deste usuário?" } %></li>
+      <% end %>
     </ul>
   </div>
 

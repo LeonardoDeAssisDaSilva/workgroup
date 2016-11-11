@@ -1,6 +1,7 @@
 // Place all the styles related to the members controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$light-yellow: #ffecb3;
 
 ul#members {
     list-style: none;
@@ -10,7 +11,7 @@ ul#members {
       height: 70px;
       margin: 5px 0px 5px -40px;
       padding: 8px 0px 8px 0px;
-      background-color: white;
+      //background-color: white;
       button {
         margin-top: -8px;
         min-height: 68px;
@@ -27,4 +28,9 @@ ul#members {
         background-color: white;
       }
     }
+}
+
+.panel-pending {
+  background-color: $light-yellow;
+  border-color: $light-yellow;
 }
