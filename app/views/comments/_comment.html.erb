@@ -6,7 +6,7 @@
     </span>
   </div>
   <div class="panel-body" style="background-color: white;">
-    <% if @task.updated_at != @task.created_at %>
+    <% if comment.updated_at != comment.created_at %>
       <div class="panel-footer clearfix">
         <span class="pull-right"><%= "Editado em: #{comment.updated_at}" %></span>
       </div>
@@ -23,7 +23,8 @@
       <br>
       <div id="collapse<%= comment.id %>" class="panel-collapse collapse">
         <%= render :partial => '/comments/new',
-                   :locals => { comment_id: comment.id } %>
+                   :locals => {comment: comment.id} %>
       </div>
   </div>
 </div>
+<%= nested_comments comment.children %>
