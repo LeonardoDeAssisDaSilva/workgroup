@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
   def index
     @task = Task.find(params[:id])
-    @comments = @task.comments.paginate(page: params[:page], :per_page => 15)
+    @comments = @task.comments.all.arrange(:order => :created_at)
 
   end
 
   def create
     task = Task.find(params[:comment][:task_id])
+    # @comment = params[:comment][:ancestry].empty? ? Comment.new(comment_params) :
+    #                                             Comment.find(params[:comment][:ancestry]).children.create(comment_params)
     @comment = Comment.new(comment_params)
     if @comment.save
       flash[:success] = "Comentário submetido"
@@ -37,7 +39,11 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params[:comment][:ancestry] = nil if params[:comment][:ancestry] == ""
+      if params[:comment][:ancestry] == ""
+        params[:comment][:ancestry] = nil
+      else
+          params[:comment][:ancestry] = Comment.find(params[:comment][:ancestry]).path_ids.join('/')
+      end
       params.require(:comment).permit(:task_id, :user_id, :ancestry, :content)
     end
 end
