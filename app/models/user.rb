@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_voter
   has_many :members, inverse_of: :user, :dependent => :destroy
   has_many :groups, through: :members
   has_many :tasks, inverse_of: :user

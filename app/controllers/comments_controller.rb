@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   def index
     @task = Task.find(params[:id])
     @comments = @task.comments.all.arrange(:order => :created_at)
-
   end
 
   def create
@@ -34,6 +33,36 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def vote_up
+    comment = Comment.find(params[:id])
+    if current_user.voted_up_on?(comment)
+      comment.unliked_by current_user
+    else
+      comment.undisliked_by current_user if current_user.voted_down_on?(comment)
+      comment.liked_by current_user
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js   { render :partial => "/comments/voting_buttons" }
+      format.json { render json: { count: comment.get_upvotes.size - comment.get_downvotes.size }}
+    end
+  end
+
+  def vote_down
+    comment = Comment.find(params[:id])
+    if current_user.voted_down_on?(comment)
+      comment.undisliked_by current_user
+    else
+      comment.unliked_by current_user if current_user.voted_up_on?(comment)
+      comment.disliked_by current_user
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+            format.js   { render :partial => "/comments/voting_buttons" }
+      format.json { render json: { count: comment.get_upvotes.size - comment.get_downvotes.size }}
+    end
   end
 
   private

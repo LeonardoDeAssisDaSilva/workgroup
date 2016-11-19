@@ -4,4 +4,8 @@ module CommentsHelper
       content_tag(:div, render(comment), :class => "replies")
     end.join.html_safe
   end
+
+  def votes(comment)
+    (comment.get_upvotes.size - comment.get_downvotes.size).to_s
+  end
 end
