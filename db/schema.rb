@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110020128) do
+ActiveRecord::Schema.define(version: 20161119031048) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20161110020128) do
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.boolean  "private"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "member_id"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.boolean  "checked"
   end
 
   create_table "members", force: :cascade do |t|

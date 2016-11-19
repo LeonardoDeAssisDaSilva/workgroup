@@ -20,4 +20,5 @@ Rails.application.routes.draw do
     resources :tasks
   end
   resources :account_activations, only: [:edit]
+  resources :invitations
 end
