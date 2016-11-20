@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get     '/groups/:group_id/tasks/:id', to: 'comments#index', as: 'task_comments'
   get     'comments/:id/vote_up',   to: 'comments#vote_up',    as: 'vote_up'
   get     'comments/:id/vote_down', to: 'comments#vote_down',  as: 'vote_down'
+  post    'follow/:id',             to: 'users#follow',        as: 'follow'
+  delete  'follow/:id',             to: 'users#unfollow',      as: 'unfollow'
 
   resources :users
   resources :account_activations, only: [:edit]
