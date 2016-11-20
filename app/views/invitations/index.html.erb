@@ -1,0 +1,11 @@
+<% provide(:title, 'Convites') %>
+
+<% if !@invitations.nil? %>
+  <%#= will_paginate %>
+
+  <ul class="list">
+    <%= render @invitations %>
+  </ul>
+
+  <%#= will_paginate %>
+<% end %>

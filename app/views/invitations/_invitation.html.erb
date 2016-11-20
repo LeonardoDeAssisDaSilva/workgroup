@@ -1,0 +1,8 @@
+<li>
+  <p>
+    O usuário <%= User.find(Member.find(invitation.member_id).user_id).name %>
+    te convidou para participar do grupo <%= Group.find(invitation.group_id).name %>
+  </p>
+  <%= link_to "Aceitar",  "/invitations/#{invitation.id}", method: :update %>
+  <%= link_to "Recusar", "/invitations/#{invitation.id}", method: :delete %>
+</li>

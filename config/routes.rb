@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get       '/login',             to: 'sessions#new'
   post      '/login',             to: 'sessions#create'
   delete    '/logout',            to: 'sessions#destroy'
+  get      '/groups/:group_id/members', to: 'members#create'
   get      '/groups/:group_id/members/:id', to: 'members#update'
+  post      '/invitations/:id',    to: 'invitations#update'
   get       'account_activations/:activation_token/edit',
             to: 'account_activations#edit', as:  'edit_account_activation'
   patch    '/groups/:group_id',  to: 'members#update'

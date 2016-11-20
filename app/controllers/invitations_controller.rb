@@ -1,12 +1,11 @@
 class InvitationsController < ApplicationController
-  before_action :set_invitation, only: [:show, :edit, :update, :destroy]
 
   def index
-    @invitations = Invitation.all
+    @invitations = current_user.invitations.where(checked: false)
   end
 
   def show
-    @invitations = current_user.invitations.where(checked: false)
+    @invitation = Invitation.find(params[:id])
   end
 
   def new
@@ -14,13 +13,25 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @invitation = Invitation.new(invitation_params)
+    @member = Member.find(params[:member_id])
+    @invitation = @member.invitations.build(member_id: @member.id,
+                                            user_id: params[:user_id],
+                                            group_id: params[:group_id],
+                                            checked: false)
+    @invitation.save
   end
 
   def update
+    invitation = Invitation.find(params[:id])
+    @group = Group.find(invitation.group_id)
+
+    invitation.update_attributes(checked: true)
+    redirect_to group_members_path(@group), method: :post
   end
 
   def destroy
+    invitation = Invitation.find(params[:id])
+    invitation.delete
   end
 
   private
