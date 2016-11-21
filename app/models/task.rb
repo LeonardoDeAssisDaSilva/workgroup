@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
+  acts_as_followable
   belongs_to :group, inverse_of: :tasks
   belongs_to :user, inverse_of: :tasks
+  has_many   :comments, inverse_of: :task
 
   validates :user_id,   presence: true
   validates :group_id,   presence: true

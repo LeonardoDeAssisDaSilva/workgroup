@@ -1,0 +1,4 @@
+<% @user ||= User.find(params[:id]) %>
+<%= form_for(current_user, :url => unfollow_path(@user.id), :method => :delete, remote: true)  do |f| %>
+  <%= f.submit "Deixar de seguir", class: "btn btn-custom btn-default" %>
+<% end %>

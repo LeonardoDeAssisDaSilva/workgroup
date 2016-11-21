@@ -1,17 +1,93 @@
 <% provide(:title, @user.name) %>
 <% breadcrumb :user, @user %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <p>
-        <%= "#{@user.course}" %>
-        <br />
-        <%= "#{@user.organization}" %>
-      </p>
-    </section>
-  </aside>
+
+<div class="row"  style="margin: 0px;">
+  <div class="col-sm-3 well">
+    <div class="group_sidebar">
+      <div class="group_information">
+        <h1>
+          <%= gravatar_for @user %>
+          <%= @user.name %>
+        </h1>
+        <p>
+          <%= "#{@user.course}" %>
+          <br />
+          <%= "#{@user.organization}" %>
+        </p>
+      </div>
+
+      <div class="group_menu">
+        <ul class="nav nav-pills nav-stacked">
+          <li class="active"><a data-toggle="tab" href="#user_tasks">Tarefas</a></li>
+          <li><a data-toggle="tab" href="#user_followers">Seguidores</a></li>
+          <li><a data-toggle="tab" href="#user_follows">Seguindo</a></li>
+          <li><a data-toggle="tab" href="#user_comments">Comentários</a></li>
+          <li><a data-toggle="tab" href="#user_groups">Grupos</a></li>
+          <li><a data-toggle="tab" href="#user_invitations">Convites</a></li>
+        </ul>
+      </div>
+    </div>
+    <%= render 'follow_form' %>
+  </div>
+
+
+  <div class="col-sm-9 well group_content tab-content" id="div_id">
+      <div role="tabpanel" class="tab-pane fade in active" id="user_tasks">
+        <%#= render :file => '/tasks/_index' %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane fade in" id="user_followers">
+        <%#= render :file => '/members/_index' %>
+        <%= will_paginate @followers %>
+        <ul class="list">
+          <% @followers .each do |f| %>
+            <% u = User.find(f.follower_id) %>
+            <li><%= link_to u.name, u %></li>
+          <% end %>
+        </ul>
+        <%= will_paginate @followers  %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane fade in" id="user_follows">
+        <%#= render :file => 'groups/_edit' %>
+        <%= will_paginate @followings %>
+        <ul class="list">
+          <% @followings.each do |f| %>
+            <% u = User.find(f.followable_id) %>
+            <li><%= link_to u.name, u %></li>
+          <% end %>
+        </ul>
+        <%= will_paginate @followings %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane fade in" id="user_comments">
+        <%#= render :file => 'groups/_edit' %>
+        <%= will_paginate @comments %>
+        <ul class="list">
+          <% @comments.each do |c| %>
+            <li>
+              <% task = Task.find(c.task.id) %>
+              <%= link_to task.title, task_comments_path(task.group, task) %>
+              <%= ": #{c.content.first(20)}" %>
+            </li>
+          <% end %>
+        </ul>
+        <%= will_paginate @comments %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane fade in" id="user_groups">
+        <%#= render :file => 'groups/_edit' %>
+        <%= will_paginate @groups %>
+        <ul class="list">
+          <% @groups.each do |g| %>
+            <li>  <%= link_to g.name, g %></li>
+          <% end %>
+        </ul>
+        <%= will_paginate @groups %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane fade in" id="user_invitations">
+        <%= render :file => '/invitations/_index' %>
+      </div>
+  </div>
 </div>

@@ -14,7 +14,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @invitations = current_user.invitations.where(checked: false).paginate(page: params[:page], :per_page => 15)
     redirect_to root_url and return unless @user.activated?
+    @comments = @user.comments.paginate(page: params[:page], :per_page => 15)
+    @groups = @user.groups.paginate(page: params[:page], :per_page => 15)
+    @followers = @user.followers_by_type('User').paginate(page: params[:page], :per_page => 15)
+    @followings = @user.following_by_type('User').paginate(page: params[:page], :per_page => 15)
   end
 
   def new
@@ -29,7 +34,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-
       flash[:info] = "Por favor visite seu email para ativar sua conta."
       redirect_to root_url
     else
@@ -48,6 +52,25 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+    end
+  end
+
+  def follow
+    user = User.find(params[:id])
+    current_user.follow(user)
+redirect_to user
+    # respond_to do |format|
+    #   format.html { redirect_to user }
+    #   format.js
+    # end
+  end
+
+  def unfollow
+    user = User.find(params[:id])
+    current_user.stop_following(user)
+    respond_to do |format|
+      format.html { redirect_to user }
+      format.js
     end
   end
 

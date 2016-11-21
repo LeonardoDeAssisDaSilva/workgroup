@@ -8,6 +8,6 @@
     O usuário <%= @user_from.name %>
     te convidou para participar do grupo <%= @group_for %>
   </p>
-  <%= link_to "Aceitar",  "/invitations/#{invitation.id}", {:class => "btn btn-success", :role => "button", method: :update} %>
-  <%= link_to "Recusar", "/invitations/#{invitation.id}", {:class => "btn btn-default", :role => "button", method: :delete} %>
+  <%= link_to "Aceitar",  "/users/#{current_user.id}/invitations/#{invitation.id}", {:class => "btn btn-success", :role => "button", method: :patch} %>
+  <%= link_to "Recusar", "/users/#{current_user.id}/invitations/#{invitation.id}", {:class => "btn btn-default", :role => "button", method: :delete} %>
 </li>

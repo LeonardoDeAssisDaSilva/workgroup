@@ -17,6 +17,9 @@ gem 'faker',                   '1.6.6'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem "gretel"
+gem 'ancestry'
+gem 'acts_as_votable', '~> 0.10.0'
+gem "acts_as_follower", github: "tcocca/acts_as_follower"
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'

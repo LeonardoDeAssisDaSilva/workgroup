@@ -10,7 +10,9 @@ $gray-medium-light: #eaeaea;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
 }
-
+// input[type=radio], input[type=checkbox] {
+//     visibility: hidden;
+// }
 /* universal */
 
 header {
@@ -47,11 +49,48 @@ textarea {
   color: $gray-light;
 }
 
+.btn-custom{
+  width: 100%;
+}
+
+.centered{
+  width:100%;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
+}
+
 .jumbotron.narrower {
   padding-top: 10px;
   height: 80px;
   text-align: center;
 
+}
+
+.glyphicon-green{
+  color: green !important;
+}
+
+.glyphicon-red{
+  color: red !important;
+}
+
+.current{
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 #main-container{

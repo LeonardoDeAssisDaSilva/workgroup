@@ -1,0 +1,4 @@
+<% @user ||= User.find(params[:id]) %>
+<%= form_for(current_user, :url => follow_path(@user.id), :method => :post, remote: true) do |f| %>
+  <%= f.submit "Seguir", class: "btn btn-custom btn-default" %>
+<% end %>

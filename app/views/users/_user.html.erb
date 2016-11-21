@@ -13,7 +13,7 @@
       <% @current_user_groups.each do |user_group| %>
         <%# if !user.groups.exists?(user_group.id) && !user.invitations.exists?(group_id: user_group.id) %>
           <% @member = current_user.members.find_by(group_id: user_group.id).id %>
-          <li><%= link_to user_group.name, invitations_path(@invitation,
+          <li><%= link_to user_group.name, user_invitations_path(@invitation,
                                                             member_id: @member,
                                                             group_id: user_group.id,
                                                             user_id: user.id), method: :create  %></li>

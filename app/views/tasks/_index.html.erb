@@ -1,26 +1,47 @@
 <div class="jumbotron narrower">
   <h3>Tarefas</h3>
-  <a href="<%= new_group_task_path(@group) %>"  >
+  <%= link_to new_group_task_path(@group), {:controller => :tasks, :action => :new} do %>
     <button type="button" class="btn btn-primary circle pull-right add-button"
             title="Novo grupo">
       <span class="glyphicon glyphicon-plus" ></span>
     </button>
-  </a>
+  <% end %>
 </div>
 
-<%= will_paginate @tasks %>
+<div class="btn-group form-group" data-toggle="buttons" >
+  <label class="btn btn-primary active">
+    <input type="radio" id="ativas" name="active" value="true" onchange="render_partial(this);">Tarefas Ativas
+  </label>
+  <label class="btn btn-default">
+     <input type="radio" id="encerradas" value="false"  onchange="render_partial(this);">Tarefas Encerradas
+  </label>
+</div>
 
 <table class="table" id="tasks-table">
-  <% if @tasks.exists? %>
+  <% if @active_tasks.exists? || @unactive_tasks.exists? %>
     <tr>
       <th class="col-sm-1 col-md-1"></th>
-      <th class="col-sm-6 col-md-6">Título</th>
-      <th class="col-sm-4 col-md-4">Entrega</th>
+      <th class="col-sm-6 col-md-6"><%= sortable 'title', 'Título' %></th>
+      <th class="col-sm-4 col-md-4"><%= sortable 'deadline', 'Entrega' %></th>
       <!-- <th class="col-sm-1 col-md-1">Prioridade</th> -->
-      <th class="col-sm-1 col-md-1">Mensagens</th>
+      <th class="col-sm-1 col-md-1"><%= sortable 'comments_count', 'Mensagens' %></th>
     </tr>
+    <%= render @active_tasks.where(active: true)  %>
   <% end %>
-  <%= render @tasks %>
 </table>
 
-<%= will_paginate @tasks %>
+<%= will_paginate @active_tasks, id: "tasks-paginate" %>
+
+<script>
+  function render_partial(type) {
+    if(type.id  == "ativas") {
+      document.getElementById('encerradas').checked = false;
+      $('#tasks-table').html('<%=j render :partial => "/tasks/task", collection: @active_tasks, as: :task %>')
+      $('#tasks-paginate').html('<%= will_paginate @active_tasks, id: "tasks-paginate" %>')
+    } else {
+      document.getElementById('ativas').checked = false;
+      $('#tasks-table').html('<%=j render :partial => "/tasks/task", collection: @unactive_tasks, as: :task %>')
+      $('#tasks-paginate').html('<%= will_paginate @unactive_tasks, id: "tasks-paginate" %>')
+    }
+  }
+</script>

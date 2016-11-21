@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/tcocca/acts_as_follower.git
+  revision: c395dd2f1d62a5879e9d084c770dc35e02ee1043
+  specs:
+    acts_as_follower (0.2.1)
+      activerecord (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,9 +45,12 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    acts_as_votable (0.10.0)
+    ancestry (2.2.2)
+      activerecord (>= 3.0.0)
     ansi (1.5.0)
     arel (7.1.4)
-    autoprefixer-rails (6.5.1.1)
+    autoprefixer-rails (6.5.3)
       execjs
     bcrypt (3.1.11)
     bootstrap-sass (3.3.6)
@@ -162,7 +172,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    route_translator (5.0.3)
+    route_translator (5.0.4)
       actionpack (>= 5.0.0, < 5.1)
       activesupport (>= 5.0.0, < 5.1)
     ruby-progressbar (1.8.1)
@@ -210,6 +220,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_follower!
+  acts_as_votable (~> 0.10.0)
+  ancestry
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.6)
   bootstrap-will_paginate (= 0.0.10)

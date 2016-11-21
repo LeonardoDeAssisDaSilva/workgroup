@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span>
+      <%= "#{comment.created_at} | " %>
+      <%= link_to comment.user.name, comment.user %>
+      <!-- <span class="vote-count-<%=comment.id%>"><%= comment.get_upvotes.size.to_s %></span> -->
+
+    </span>
+  </div>
+  <div class="panel-body" style="background-color: white;">
+    <% if comment.updated_at != comment.created_at %>
+      <div class="panel-footer clearfix">
+        <span class="pull-right"><%= "Editado em: #{comment.updated_at}" %></span>
+      </div>
+    <% end %>
+
+    <p><%= comment.content %></p>
+  </div>
+  <div class="panel-footer clearfix">
+      <span class="panel-title pull-right vote">
+        <span class="vote-count-<%=comment.id%>"><%= votes(comment) %></span>
+        <span class="vote-buttons">
+        <%= render  :partial => '/comments/voting_buttons',
+                    :locals => {comment: comment.id}, remote: true %>
+        </span>
+        <a class="" data-toggle="collapse" href="#collapse<%= comment.id %>">
+          Responder
+        </a>
+      </span>
+      <br>
+      <div id="collapse<%= comment.id %>" class="panel-collapse collapse">
+        <%= render :partial => '/comments/new',
+                   :locals => {comment: comment.id} %>
+      </div>
+  </div>
+</div>
+<%= nested_comments comment.children %>
+
+<script>
+  $(document)
+      .on('ajax:send', '.vote', function () { $(this).addClass('loading'); })
+      .on('ajax:complete', '.vote', function () { $(this).removeClass('loading'); })
+      .on('ajax:error', '.vote', function(e, xhr, status, error) { console.log(status); console.log(error); })
+      .on('ajax:success', '.vote', function (e, data, status, xhr) { $(this).find('span.vote-count-<%=comment.id%>').html(data.count); });
+</script>

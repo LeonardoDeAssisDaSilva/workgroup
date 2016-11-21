@@ -1,3 +1,6 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
 <tr class="panel panel-<%= task.priority %>" >
   <td class="col-sm-1 col-md-1">
     <div class="dropdown">
@@ -6,16 +9,18 @@
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
         <li><%= link_to "Favoritar", '#' %></li>
-        <li><%= link_to "Arquivar/Encerrar", '#' %></li>
-        <li><%= link_to "Editar", edit_group_task_path(@group, task) %></li>
-        <li><%= link_to "Excluir", group_task_path(@group, task),
-                                   method: :delete,
-                                   data: { confirm: "Você realmente deseja excluir esta tarefa?" } %></li>
+        <% if author?(task) || admin?(params[:group_id]) %>
+          <li><%= link_to "Arquivar/Encerrar", archive_path(task.id), method: :put %></li>
+          <li><%= link_to "Editar", edit_group_task_path(@group, task) %></li>
+          <li><%= link_to "Excluir", group_task_path(@group, task),
+                                     method: :delete,
+                                     data: { confirm: "Você realmente deseja excluir esta tarefa?" } %></li>
+        <% end %>
       </ul>
     </div>
   </td>
-  <td class="col-sm-6 col-md-6"><%= link_to task.title, group_task_path(@group, task) %></td>
+  <td class="col-sm-6 col-md-6"><%= link_to task.title, task_comments_path(@group, task) %></td>
   <td class="col-sm-4 col-md-4"><%= task.deadline.to_formatted_s(:long) %></td>
   <!-- <td class="col-sm-1 col-md-1"><%= task.priority %></td> -->
-  <td class="col-sm-1 col-md-1"><%= 0 %></td>
+  <td class="col-sm-1 col-md-1"><%= task.comments.count %></td>
 </tr>

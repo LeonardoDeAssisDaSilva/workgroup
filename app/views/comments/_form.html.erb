@@ -1,0 +1,13 @@
+<% @comment ||= comment %>
+<%= form_for(@comment, :url => {:controller => "comments", :action => action_type}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.hidden_field :task_id, value: @comment.task.id, class: 'form-control' %>
+  <%= f.hidden_field :user_id, value: current_user.id, class: 'form-control' %>
+  <%= f.hidden_field :ancestry, value: parent_id, class: 'form-control' %>
+
+  <%= f.label :content, "Texto" %>
+  <%= f.text_area :content, class: 'form-control' %>
+
+  <%= f.submit button_text, class: "btn btn-primary" %>
+<% end %>

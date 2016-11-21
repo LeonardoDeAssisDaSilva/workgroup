@@ -83,6 +83,21 @@ for n in 1...20
                priority: priority,
                deadline: deadline,
                description: description,
+               active: true,
+               group_id: Group.first.id,
+               user_id: User.find(n).id)
+end
+
+for n in 1...10
+  title = Faker::Company.bs
+  priority = @priorities[rand(4)]
+  deadline = Faker::Time.backward(30, :morning)
+  description = Faker::Hacker.say_something_smart
+  Task.create!(title: title,
+               priority: priority,
+               deadline: deadline,
+               description: description,
+               active: false,
                group_id: Group.first.id,
                user_id: User.find(n).id)
 end
