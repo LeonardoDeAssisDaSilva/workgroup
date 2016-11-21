@@ -1,12 +1,24 @@
-<li>
+<li id="only-users">
   <%= gravatar_for user, size: 50 %>
   <%= link_to user.name, user %>
   <%
-    @member = 42
     @invitation = Invitation.new
   %><br>
-  <%= link_to "Convidar",  invitations_path(@invitation,
-                                            member_id: @member,
-                                             group_id: 3,
-                                             user_id: user.id), method: :create %>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <span class="glyphicon glyphicon-envelope" > Convidar</span>
+    </button>
+
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% @current_user_groups.each do |user_group| %>
+        <%# if !user.groups.exists?(user_group.id) && !user.invitations.exists?(group_id: user_group.id) %>
+          <% @member = current_user.members.find_by(group_id: user_group.id).id %>
+          <li><%= link_to user_group.name, invitations_path(@invitation,
+                                                            member_id: @member,
+                                                            group_id: user_group.id,
+                                                            user_id: user.id), method: :create  %></li>
+        <%# end %>
+      <% end %>
+    </ul>
+  </div>
 </li>

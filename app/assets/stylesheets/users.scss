@@ -1,3 +1,24 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul#users {
+    list-style: none;
+    margin-left: -30px;
+
+
+      #only-users {
+        padding-bottom: 10px;
+        margin-top: 10px;
+        margin-left: 30px;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+
+      .dropdown-menu{
+        ul, li{
+          margin-left: 0;
+          background-color: white;
+        }
+
+}

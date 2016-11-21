@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
 
   def index
-    @invitations = current_user.invitations.where(checked: false)
+    @invitations = current_user.invitations.where(checked: false).paginate(page: params[:page], :per_page => 15)
   end
 
   def show
@@ -14,11 +14,21 @@ class InvitationsController < ApplicationController
 
   def create
     @member = Member.find(params[:member_id])
-    @invitation = @member.invitations.build(member_id: @member.id,
-                                            user_id: params[:user_id],
-                                            group_id: params[:group_id],
-                                            checked: false)
-    @invitation.save
+    @user_to = User.find(params[:user_id])
+
+    #só envia um convite caso o usuário não possua um convite não visualizado
+    #para o mesmo grupo, e se ele não estiver no grupo
+    if !@user_to.groups.exists?(params[:group_id]) && !Invitation.where(user_id: params[:user_id]).where(group_id: params[:group_id]).where(checked: false).exists?
+        @invitation = @member.invitations.build(member_id: @member.id,
+                                                user_id: params[:user_id],
+                                                group_id: params[:group_id],
+                                                checked: false)
+        @invitation.save
+        flash[:success] = "Convite enviado"
+    else
+        flash[:danger] = "Convite não enviado"
+    end
+    redirect_to '/users'
   end
 
   def update
