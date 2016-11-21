@@ -31,6 +31,4 @@ Rails.application.routes.draw do
     resources :members, only: [:create, :update, :destroy]
     resources :tasks, only: [:create, :edit, :update, :destroy]
   end
-  resources :account_activations, only: [:edit]
-
 end
