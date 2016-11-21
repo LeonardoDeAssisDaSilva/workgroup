@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120011611) do
+ActiveRecord::Schema.define(version: 20161121001958) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -64,8 +64,10 @@ ActiveRecord::Schema.define(version: 20161120011611) do
     t.text     "description"
     t.integer  "group_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "active",         default: true
+    t.integer  "comments_count", default: 0
     t.index ["group_id"], name: "index_tasks_on_group_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end

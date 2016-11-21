@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :logged_in_user, only: [:show, :new, :create]
+  helper_method :sort_column, :sort_direction, :filter_type
 
   def index
     if params[:"srch-term"]
@@ -12,7 +13,10 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @members = @group.members.paginate(page: params[:page], :per_page => 15)
-    @tasks = @group.tasks.paginate(page: params[:page], :per_page => 15)
+    # @tasks = @group.tasks.order(sort_column + " " + sort_direction).paginate(page: params[:page], :per_page => 15)
+    @active_tasks =  @group.tasks.where(active: true).order(sort_column + " " + sort_direction).paginate(page: params[:page], :per_page => 15)
+    @unactive_tasks =  @group.tasks.where(active: false).order(sort_column + " " + sort_direction).paginate(page: params[:page], :per_page => 15)
+
   end
 
   def new
@@ -52,4 +56,11 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name, :area, :description, :private)
     end
 
+    def sort_column
+      Task.column_names.include?(params[:sort]) ? params[:sort] : 'deadline'
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    end
 end

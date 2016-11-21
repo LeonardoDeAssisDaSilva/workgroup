@@ -10,7 +10,9 @@ $gray-medium-light: #eaeaea;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
 }
-
+// input[type=radio], input[type=checkbox] {
+//     visibility: hidden;
+// }
 /* universal */
 
 header {
@@ -83,6 +85,12 @@ textarea {
 
 .glyphicon-red{
   color: red !important;
+}
+
+.current{
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 #main-container{

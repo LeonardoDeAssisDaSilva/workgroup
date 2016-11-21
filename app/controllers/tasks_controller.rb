@@ -1,11 +1,6 @@
 class TasksController < ApplicationController
   helper_method :author
 
-  def show
-    @task = Task.find(params[:id])
-    @comments = @task.comments.paginate(page: params[:page], :per_page => 15)
-  end
-
   def new
     group = Group.find(params[:group_id])
     @task = group.tasks.build
@@ -47,14 +42,20 @@ class TasksController < ApplicationController
     end
   end
 
+  def archive
+    @task = Task.find(params[:id])
+    if @task.update_attributes(active: false)
+      flash[:success] = "Tarefa arquivada"
+    else
+      flash[:danger] = "Você não possui autorização para realizar esta operação!"
+    end
+    redirect_to @task.group
+  end
+
   private
 
     def task_params
-      params.require(:task).permit(:title, :priority, :deadline, :description)
+      params.require(:task).permit(:title, :priority, :deadline, :description, :active)
       params[:task].merge!({ user_id: current_user.id })
-    end
-
-    def author?
-      @task.user == current_user
     end
 end
