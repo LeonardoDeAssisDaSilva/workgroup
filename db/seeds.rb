@@ -1,11 +1,4 @@
 ############################## USERS ##############################
-User.create!(name:  "Example User",
-             email: "example@email.com",
-             password:              "123456",
-             password_confirmation: "123456",
-             activated: true,
-             activated_at: Time.zone.now)
-
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@email.com"
@@ -22,6 +15,12 @@ User.create!(name:  "Example User",
                activated_at: Time.zone.now)
 end
 
+User.create!(name:  "Example User",
+             email: "example@email.com",
+             password:              "123456",
+             password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.zone.now)
 
 ############################## GROUPS ##############################
 Group.create!(name: "Banco de Dados",
