@@ -46,12 +46,22 @@ ActiveRecord::Schema.define(version: 20161121001958) do
     t.boolean  "private"
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "member_id"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.boolean  "checked"
+  end
+
   create_table "members", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "user_id"
     t.boolean  "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "pending"
     t.index ["group_id", "user_id"], name: "index_members_on_group_id_and_user_id", unique: true
     t.index ["group_id"], name: "index_members_on_group_id"
     t.index ["user_id"], name: "index_members_on_user_id"

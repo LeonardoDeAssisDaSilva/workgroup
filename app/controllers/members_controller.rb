@@ -3,9 +3,13 @@ class MembersController < ApplicationController
 
   def create
     unless member?(params[:group_id])
+      @pending = if (Group.find(params[:group_id]).private?) then true else false end
+
       @member = current_user.members.build(group_id: params[:group_id],
                                            user_id: current_user.id,
-                                           admin: false)
+                                           admin: false,
+                                           pending: @pending)
+
       if @member.save
         flash[:success] = "Novo membro adicionado."
         redirect_to group_path(params[:group_id])
@@ -19,7 +23,9 @@ class MembersController < ApplicationController
 
   def update
     member = Member.find(params[:id])
-    if admin?(params[:group_id]) && member.update_attributes(admin: true)
+    #if admin?(params[:group_id]) && member.update_attributes(admin: true)
+    if admin?(params[:group_id])
+      member.update_attributes(admin: params[:admin], pending: params[:pending])
       flash[:success] = "Operação realizada com sucesso."
       redirect_to Group.find(params[:group_id])
       return
@@ -43,6 +49,6 @@ class MembersController < ApplicationController
   private
 
     def member_params
-      params.require(:member).permit(:group, :user)
+      params.require(:member).permit(:group, :user, :pending)
     end
 end

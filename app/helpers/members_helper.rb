@@ -6,4 +6,8 @@ module MembersHelper
   def admin?(group)
     current_user.members.find_by(group_id: group).admin? if member?(group)
   end
+
+  def pending?(member, group)
+    Member.find(member).pending? if member?(group)
+  end
 end

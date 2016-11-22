@@ -32,7 +32,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    if author? || admin?(params[:group_id])
+    if author || admin?(params[:group_id])
       @task.delete
       flash[:success] = "Operação realizada com sucesso."
       redirect_to request.referrer || root_url

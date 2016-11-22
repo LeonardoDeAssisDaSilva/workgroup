@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :members, inverse_of: :user, :dependent => :destroy
   has_many :groups, through: :members
   has_many :tasks, inverse_of: :user
+  has_many :invitations
   has_many :comments, inverse_of: :user
   default_scope -> { order(created_at: :desc) }
 

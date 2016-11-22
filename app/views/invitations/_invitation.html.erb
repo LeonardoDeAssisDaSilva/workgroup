@@ -1,0 +1,13 @@
+<li>
+  <%
+    @user_from = User.find(Member.find(invitation.member_id).user_id)
+    @group_for = Group.find(invitation.group_id).name
+  %>
+  <%= gravatar_for @user_from, size: 70 %>
+  <p>
+    O usuário <%= @user_from.name %>
+    te convidou para participar do grupo <%= @group_for %>
+  </p>
+  <%= link_to "Aceitar",  "/users/#{current_user.id}/invitations/#{invitation.id}", {:class => "btn btn-success", :role => "button", method: :patch} %>
+  <%= link_to "Recusar", "/users/#{current_user.id}/invitations/#{invitation.id}", {:class => "btn btn-default", :role => "button", method: :delete} %>
+</li>

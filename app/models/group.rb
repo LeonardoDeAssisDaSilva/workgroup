@@ -2,6 +2,7 @@ class Group < ApplicationRecord
   has_many :members, inverse_of: :group, :dependent => :destroy
   has_many :users,   through: :members
   has_many :tasks,   inverse_of: :group
+  has_many :invitations
 
   validates :name,        presence: true, length: { maximum: 50 }
   validates :area,        presence: true, length: { maximum: 50 }

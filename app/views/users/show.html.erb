@@ -23,6 +23,7 @@
           <li><a data-toggle="tab" href="#user_follows">Seguindo</a></li>
           <li><a data-toggle="tab" href="#user_comments">Comentários</a></li>
           <li><a data-toggle="tab" href="#user_groups">Grupos</a></li>
+          <li><a data-toggle="tab" href="#user_invitations">Convites</a></li>
         </ul>
       </div>
     </div>
@@ -84,5 +85,11 @@
         </ul>
         <%= will_paginate @groups %>
       </div>
+<<<<<<< HEAD
+=======
+      <div role="tabpanel" class="tab-pane fade in" id="user_invitations">
+        <%= render :file => '/invitations/_index' %>
+      </div>
+>>>>>>> 1ca3629273b716344828a87542dfa6606a3d1bfa
   </div>
 </div>

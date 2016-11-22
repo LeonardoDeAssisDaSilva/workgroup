@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
+    @current_user_groups = current_user.groups
     if params[:"srch-term"]
       @users = User.where(activated: true).search(params[:"srch-term"]).order("created_at
         DESC").paginate(page: params[:page], :per_page => 15)
@@ -13,6 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @invitations = current_user.invitations.where(checked: false).paginate(page: params[:page], :per_page => 15)
     redirect_to root_url and return unless @user.activated?
     @comments = @user.comments.paginate(page: params[:page], :per_page => 15)
     @groups = @user.groups.paginate(page: params[:page], :per_page => 15)

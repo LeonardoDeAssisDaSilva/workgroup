@@ -14,12 +14,17 @@ Rails.application.routes.draw do
   put     '/tasks/:id',         to: 'tasks#archive',           as: 'archive'
   get     '/groups/:group_id/tasks/new', to: 'tasks#new',      as: 'new_group_task'
   get     '/groups/:group_id/tasks/:id', to: 'comments#index', as: 'task_comments'
+  get     '/groups/:group_id/members', to: 'members#create'
+  get     '/groups/:group_id/members/:id', to: 'members#update'
+  patch   '/groups/:group_id',  to: 'members#update'
   get     'comments/:id/vote_up',   to: 'comments#vote_up',    as: 'vote_up'
   get     'comments/:id/vote_down', to: 'comments#vote_down',  as: 'vote_down'
   post    'follow/:id',             to: 'users#follow',        as: 'follow'
   delete  'follow/:id',             to: 'users#unfollow',      as: 'unfollow'
 
-  resources :users
+  resources :users do
+    resources :invitations, only: [:new, :create, :index, :update, :destroy]
+  end
   resources :account_activations, only: [:edit]
   resources :comments, only: [:new, :create, :index]
   resources :groups do
