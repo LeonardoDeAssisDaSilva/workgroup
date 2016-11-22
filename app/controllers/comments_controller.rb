@@ -6,8 +6,6 @@ class CommentsController < ApplicationController
 
   def create
     task = Task.find(params[:comment][:task_id])
-    # @comment = params[:comment][:ancestry].empty? ? Comment.new(comment_params) :
-    #                                             Comment.find(params[:comment][:ancestry]).children.create(comment_params)
     @comment = Comment.new(comment_params)
     if @comment.save
       flash[:success] = "Comentário submetido"
@@ -45,7 +43,7 @@ class CommentsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to :back }
-      format.js   { render :partial => "/comments/voting_buttons" }
+      format.js   { render :partial => '/comments/voting_buttons', :locals => {comment: comment.id} }
       format.json { render json: { count: comment.get_upvotes.size - comment.get_downvotes.size }}
     end
   end
@@ -60,7 +58,7 @@ class CommentsController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to :back }
-            format.js   { render :partial => "/comments/voting_buttons" }
+      format.js   { render :partial => '/comments/voting_buttons', :locals => {comment: comment.id} }
       format.json { render json: { count: comment.get_upvotes.size - comment.get_downvotes.size }}
     end
   end

@@ -1,12 +1,11 @@
-<% comment = Comment.find(comment) %>
-<%= Time.now %>
+<% comment = Comment.find(comment).reload %>
 <% if current_user.voted_as_when_voted_for(comment).nil? %>
-  <%= link_to '', vote_up_path(comment), class: "glyphicon glyphicon-thumbs-up upvote-comment", method: :get, remote: true,data: { type: :json } %>
-  <%= link_to '', vote_down_path(comment), class: "glyphicon glyphicon-thumbs-down downvote-comment", method: :get, remote: true,data: { type: :json } %>
+  <%= link_to '', vote_up_path(comment), class: "glyphicon glyphicon-thumbs-up upvote-comment", method: :get, remote: true, data: { type: :json }, onclick: "render_buttons(this);" %>
+  <%= link_to '', vote_down_path(comment), class: "glyphicon glyphicon-thumbs-down downvote-comment", method: :get, remote: true, data: { type: :json }, onclick: "render_buttons(this);" %>
 <% elsif current_user.voted_up_on?(comment) %>
-  <%= link_to '', vote_up_path(comment), class: "glyphicon glyphicon-green glyphicon-thumbs-up upvote-comment", method: :get, remote: true,data: { type: :json } %>
-  <%= link_to '', vote_down_path(comment), class: "glyphicon glyphicon-thumbs-down downvote-comment", method: :get, remote: true,data: { type: :json } %>
+  <%= link_to '', vote_up_path(comment), class: "glyphicon glyphicon-green glyphicon-thumbs-up upvote-comment", method: :get, remote: true, data: { type: :json }, onclick: "render_buttons(this);" %>
+  <%= link_to '', vote_down_path(comment), class: "glyphicon glyphicon-thumbs-down downvote-comment", method: :get, remote: true, data: { type: :json }, onclick: "render_buttons(this);" %>
 <% else %>
-  <%= link_to '', vote_up_path(comment), class: "glyphicon glyphicon-thumbs-up upvote-comment", method: :get, remote: true,data: { type: :json } %>
-  <%= link_to '', vote_down_path(comment), class: "glyphicon glyphicon-red glyphicon-thumbs-down downvote-comment", method: :get, remote: true,data: { type: :json } %>
+  <%= link_to '', vote_up_path(comment), class: "glyphicon glyphicon-thumbs-up upvote-comment", method: :get, remote: true, data: { type: :json }, onclick: "render_buttons(this);" %>
+  <%= link_to '', vote_down_path(comment), class: "glyphicon glyphicon-red glyphicon-thumbs-down downvote-comment", method: :get, remote: true, data: { type: :json }, onclick: "render_buttons(this);" %>
 <% end %>

@@ -21,8 +21,25 @@ $(function() {
     $.getScript(this.href);
     return false;
   });
-  // $("#products_search input").keyup(function() {
-  //   $.get($("#products_search").attr("action"), $("#products_search").serialize(), null, "script");
-  //   return false;
-  // });
 });
+
+function render_buttons(button, id) {
+  if(button.classList.contains("upvote-comment")){
+    if(button.classList.contains("glyphicon-green")){
+      button.classList.remove("glyphicon-green");
+    }
+    else{
+      button.className += " glyphicon-green";
+      button.nextElementSibling.classList.remove("glyphicon-red");
+    }
+  }
+  else {
+    if(button.classList.contains("glyphicon-red")){
+      button.classList.remove("glyphicon-red");
+    }
+    else{
+      button.className += " glyphicon-red";
+      button.previousElementSibling.classList.remove("glyphicon-green");
+    }
+  }
+}

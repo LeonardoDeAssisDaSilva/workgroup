@@ -19,9 +19,9 @@
   <div class="panel-footer clearfix">
       <span class="panel-title pull-right vote">
         <span class="vote-count-<%=comment.id%>"><%= votes(comment) %></span>
-        <span class="vote-buttons">
-        <%= render  :partial => '/comments/voting_buttons',
-                    :locals => {comment: comment.id}, remote: true %>
+        <span id="vote-buttons-<%=comment.id%>">
+          <%= render  :partial => '/comments/voting_buttons',
+                      :locals => {comment: comment.id} %>
         </span>
         <a class="" data-toggle="collapse" href="#collapse<%= comment.id %>">
           Responder
@@ -41,5 +41,7 @@
       .on('ajax:send', '.vote', function () { $(this).addClass('loading'); })
       .on('ajax:complete', '.vote', function () { $(this).removeClass('loading'); })
       .on('ajax:error', '.vote', function(e, xhr, status, error) { console.log(status); console.log(error); })
-      .on('ajax:success', '.vote', function (e, data, status, xhr) { $(this).find('span.vote-count-<%=comment.id%>').html(data.count); });
+      .on('ajax:success', '.vote', function (e, data, status, xhr) {
+          // $(this).find('span.vote-buttons-<%=comment.id%>').html('<%=j render :partial => "/comments/voting_buttons", :locals => {comment: comment.id} %>')
+          $(this).find('span.vote-count-<%=comment.id%>').html(data.count) });
 </script>
