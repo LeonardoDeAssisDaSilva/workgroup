@@ -49,32 +49,23 @@
   <div class="col-sm-9 well group_content tab-content" id="div_id">
       <div role="tabpanel" class="tab-pane fade in active" id="user_tasks">
         <ul class="list">
-          <% @tasks.each do |t| %>
-            <li><%= link_to t.title, task_comments_path(t) %></li>
-          <% end %>
+          <%= render :partial => '/users/follow_item', collection: @tasks, as: :item %>
         </ul>
         <%= will_paginate @tasks %>
       </div>
 
       <div role="tabpanel" class="tab-pane fade in" id="user_followers">
-        <%#= render :file => '/members/_index' %>
         <ul class="list">
-          <% @followers.each do |u| %>
-            <li><%= link_to u.name, u %></li>
-          <% end %>
+          <%= render :partial => '/users/follow_item', collection: @followers, as: :item %>
         </ul>
         <%= will_paginate @followers %>
       </div>
 
       <div role="tabpanel" class="tab-pane fade in" id="user_follows">
-        <%#= render :file => 'groups/_edit' %>
-        <ul class="list">
-          <% @followings.each do |u| %>
-
-            <li><%= link_to u.name, u %></li>
-          <% end %>
-        </ul>
-        <%= will_paginate @followings %>
+          <ul class="list">
+            <%= render :partial => '/users/follow_item', collection: @followings, as: :item %>
+          </ul>
+          <%= will_paginate @followings %>
       </div>
 
       <div role="tabpanel" class="tab-pane fade in" id="user_comments">
