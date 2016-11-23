@@ -11,9 +11,11 @@
       <li><%= link_to "Visualizar perfil", user_path(member.user) %></li>
       <% if admin?(params[:id]) %>
         <% if !member.pending? %>
-
-          <li><%= link_to "Tornar administrador", group_member_path(@group, member),
-                                                  method: :patch %></li>
+          <% unless admin?(params[:id], member) %>
+            <li><%= link_to "Tornar administrador",
+                            "/groups/#{@group.id}/members/#{member.id}?admin=#{true}",
+                              data: { confirm: "Você realmente deseja tornar este membro administrador?" } %></li>
+          <% end %>
           <li><%= link_to "Expulsar", group_member_path(@group, member),
                                       method: :delete,
                                       data: { confirm: "Você realmente deseja expulsar este membro?" } %></li>
@@ -36,6 +38,7 @@
       <%= link_to  member.user.name + " (pendente)", member.user %>
     <% else %>
       <%= link_to  member.user.name, member.user %>
+      <%= "<span class='glyphicon glyphicon-king'></span>".html_safe if admin?(@group.id, member) %>
     <% end %>
   </li>
 </div>

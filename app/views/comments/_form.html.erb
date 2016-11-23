@@ -7,7 +7,7 @@
   <%= f.hidden_field :ancestry, value: parent_id, class: 'form-control' %>
 
   <%= f.label :content, "Texto" %>
-  <%= f.text_area :content, class: 'form-control' %>
+  <%= f.text_area :content, placeholder: "Máximo de 500 caracteres", maxlength: 500, class: 'form-control' %>
 
   <%= f.submit button_text, class: "btn btn-primary" %>
 <% end %>
