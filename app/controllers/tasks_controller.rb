@@ -52,6 +52,18 @@ class TasksController < ApplicationController
     redirect_to @task.group
   end
 
+  def follow
+    task = Task.find(params[:id])
+    current_user.follow(task)
+    redirect_to group_path(task.group_id)
+  end
+
+  def unfollow
+    task = Task.find(params[:id])
+    current_user.stop_following(task)
+    redirect_to group_path(task.group_id)
+  end
+
   private
 
     def task_params

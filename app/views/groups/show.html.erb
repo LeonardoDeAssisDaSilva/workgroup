@@ -20,10 +20,10 @@
       <div class="group_menu">
         <ul class="nav nav-pills nav-stacked">
           <li class="active"><a data-toggle="tab" href="#group_forum">Fórum
-            <span class="badge pull-right"><%=@group.tasks.count%></span>
+            <span class="badge pull-right"><%=@active_tasks.count%></span>
           </a></li>
           <li><a data-toggle="tab" href="#group_members">Membros
-            <span class="badge pull-right"><%=@group.members.count%></span>
+            <span class="badge pull-right"><%=@members.count%></span>
           </a></li>
           <% if admin?(@group.id) %>
               <li><a data-toggle="pill" href="#group_configurations">Configurações</a></li>

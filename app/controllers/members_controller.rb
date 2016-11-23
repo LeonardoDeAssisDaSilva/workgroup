@@ -24,8 +24,7 @@ class MembersController < ApplicationController
   def update
     member = Member.find(params[:id])
     #if admin?(params[:group_id]) && member.update_attributes(admin: true)
-    if admin?(params[:group_id])
-      member.update_attributes(admin: params[:admin], pending: params[:pending])
+    if admin?(params[:group_id]) && member.update_attributes(admin: params[:admin], pending: params[:pending])
       flash[:success] = "Operação realizada com sucesso."
       redirect_to Group.find(params[:group_id])
       return

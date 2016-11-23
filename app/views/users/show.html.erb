@@ -16,14 +16,29 @@
         </p>
       </div>
 
-      <div class="group_menu">
+      <div class="group_menu" style="margin-bottom: 10px;">
         <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a data-toggle="tab" href="#user_tasks">Tarefas</a></li>
-          <li><a data-toggle="tab" href="#user_followers">Seguidores</a></li>
-          <li><a data-toggle="tab" href="#user_follows">Seguindo</a></li>
-          <li><a data-toggle="tab" href="#user_comments">Comentários</a></li>
-          <li><a data-toggle="tab" href="#user_groups">Grupos</a></li>
-          <li><a data-toggle="tab" href="#user_invitations">Convites</a></li>
+          <li class="active"><a data-toggle="tab" href="#user_tasks">Tarefas
+                             <span class="badge pull-right"><%=@tasks.count%></span>
+          </a></li>
+          <% if current_user == @user %>
+            <li><a data-toggle="tab" href="#user_invitations">Convites
+                <span class="badge pull-right"><%=@invitations.count%></span>
+            </a></li>
+          <% end %>
+          <li><a data-toggle="tab" href="#user_followers">Seguidores
+              <span class="badge pull-right"><%=@followers.count%></span>
+          </a></li>
+          <li><a data-toggle="tab" href="#user_follows">Seguindo
+              <span class="badge pull-right"><%=@followings.count%></span>
+          </a></li>
+          <li><a data-toggle="tab" href="#user_comments">Comentários
+              <span class="badge pull-right"><%=@comments.count%></span>
+          </a></li>
+          <li><a data-toggle="tab" href="#user_groups">Grupos
+              <span class="badge pull-right"><%=@groups.count%></span>
+          </a></li>
+
         </ul>
       </div>
     </div>
@@ -33,27 +48,29 @@
 
   <div class="col-sm-9 well group_content tab-content" id="div_id">
       <div role="tabpanel" class="tab-pane fade in active" id="user_tasks">
-        <%#= render :file => '/tasks/_index' %>
+        <ul class="list">
+          <% @tasks.each do |t| %>
+            <li><%= link_to t.title, task_comments_path(t) %></li>
+          <% end %>
+        </ul>
+        <%= will_paginate @tasks %>
       </div>
 
       <div role="tabpanel" class="tab-pane fade in" id="user_followers">
         <%#= render :file => '/members/_index' %>
-        <%= will_paginate @followers %>
         <ul class="list">
-          <% @followers .each do |f| %>
-            <% u = User.find(f.follower_id) %>
+          <% @followers.each do |u| %>
             <li><%= link_to u.name, u %></li>
           <% end %>
         </ul>
-        <%= will_paginate @followers  %>
+        <%= will_paginate @followers %>
       </div>
 
       <div role="tabpanel" class="tab-pane fade in" id="user_follows">
         <%#= render :file => 'groups/_edit' %>
-        <%= will_paginate @followings %>
         <ul class="list">
-          <% @followings.each do |f| %>
-            <% u = User.find(f.followable_id) %>
+          <% @followings.each do |u| %>
+
             <li><%= link_to u.name, u %></li>
           <% end %>
         </ul>
@@ -62,7 +79,6 @@
 
       <div role="tabpanel" class="tab-pane fade in" id="user_comments">
         <%#= render :file => 'groups/_edit' %>
-        <%= will_paginate @comments %>
         <ul class="list">
           <% @comments.each do |c| %>
             <li>
@@ -77,7 +93,6 @@
 
       <div role="tabpanel" class="tab-pane fade in" id="user_groups">
         <%#= render :file => 'groups/_edit' %>
-        <%= will_paginate @groups %>
         <ul class="list">
           <% @groups.each do |g| %>
             <li>  <%= link_to g.name, g %></li>

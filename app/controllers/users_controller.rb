@@ -14,10 +14,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @invitations = current_user.invitations.where(checked: false).paginate(page: params[:page], :per_page => 15)
     redirect_to root_url and return unless @user.activated?
+    @invitations = current_user.invitations.where(checked: false).paginate(page: params[:page], :per_page => 15)
     @comments = @user.comments.paginate(page: params[:page], :per_page => 15)
     @groups = @user.groups.paginate(page: params[:page], :per_page => 15)
+    @tasks = @user.following_by_type('Task').paginate(page: params[:page], :per_page => 15)
     @followers = @user.followers_by_type('User').paginate(page: params[:page], :per_page => 15)
     @followings = @user.following_by_type('User').paginate(page: params[:page], :per_page => 15)
   end
@@ -58,7 +59,7 @@ class UsersController < ApplicationController
   def follow
     user = User.find(params[:id])
     current_user.follow(user)
-redirect_to user
+    redirect_to user
     # respond_to do |format|
     #   format.html { redirect_to user }
     #   format.js

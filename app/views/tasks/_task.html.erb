@@ -8,8 +8,12 @@
         <span class="glyphicon glyphicon-option-vertical" ></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><%= link_to "Favoritar", '#' %></li>
-        <% if author?(task) || admin?(params[:group_id]) %>
+        <% if current_user.following?(task) %>
+          <li><%= link_to "Deixa de seguir", unfollow_task_path(task.id), {method: :delete} %></li>
+        <% else %>
+          <li><%= link_to "Seguir", follow_task_path(task.id), {method: :post} %></li>
+        <% end %>
+        <% if author?(task) || admin?(@group.id) %>
           <li><%= link_to "Arquivar/Encerrar", archive_path(task.id), method: :put %></li>
           <li><%= link_to "Editar", edit_group_task_path(@group, task) %></li>
           <li><%= link_to "Excluir", group_task_path(@group, task),
