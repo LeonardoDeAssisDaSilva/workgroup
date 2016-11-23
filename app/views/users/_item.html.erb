@@ -1,0 +1,9 @@
+<li id="only-users">
+  <% if item.class.table_name == "users" %>
+    <%= link_to item.name, item %>
+  <% elsif item.class.table_name == "tasks" %>
+    <%= link_to item.title, task_comments_path(item.id) %>
+  <% else %>
+    <%= link_to item.name, group_path(item) %>
+  <% end %>
+</li>

@@ -49,21 +49,21 @@
   <div class="col-sm-9 well group_content tab-content" id="div_id">
       <div role="tabpanel" class="tab-pane fade in active" id="user_tasks">
         <ul class="list">
-          <%= render :partial => '/users/follow_item', collection: @tasks, as: :item %>
+          <%= render :partial => '/users/item', collection: @tasks, as: :item %>
         </ul>
         <%= will_paginate @tasks %>
       </div>
 
       <div role="tabpanel" class="tab-pane fade in" id="user_followers">
         <ul class="list">
-          <%= render :partial => '/users/follow_item', collection: @followers, as: :item %>
+          <%= render :partial => '/users/item', collection: @followers, as: :item %>
         </ul>
         <%= will_paginate @followers %>
       </div>
 
       <div role="tabpanel" class="tab-pane fade in" id="user_follows">
           <ul class="list">
-            <%= render :partial => '/users/follow_item', collection: @followings, as: :item %>
+            <%= render :partial => '/users/item', collection: @followings, as: :item %>
           </ul>
           <%= will_paginate @followings %>
       </div>
@@ -86,7 +86,7 @@
         <%#= render :file => 'groups/_edit' %>
         <ul class="list">
           <% @groups.each do |g| %>
-            <li>  <%= link_to g.name, g %></li>
+              <%= render :partial => '/users/item', collection: @groups, as: :item %>
           <% end %>
         </ul>
         <%= will_paginate @groups %>

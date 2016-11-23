@@ -1,7 +1,0 @@
-<li id="only-users">
-  <% if item.class.table_name == "users" %>
-    <%= link_to item.name, item %>
-  <% else %>
-    <%= link_to item.title, task_comments_path(item) %>
-  <% end %>
-</li>
