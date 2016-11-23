@@ -10,15 +10,15 @@ $gray-medium-light: #eaeaea;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
 }
-// input[type=radio], input[type=checkbox] {
-//     visibility: hidden;
-// }
-/* universal */
 
 header {
   position: fixed !important;
   top: 0;
   width: 100%;
+}
+
+body{
+  background-color: white;
 }
 
 section {
@@ -95,6 +95,7 @@ textarea {
 
 #main-container{
   margin-top: 70px;
+  background-color: white;
 }
 
 /* typography */

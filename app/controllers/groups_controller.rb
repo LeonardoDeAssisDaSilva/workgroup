@@ -13,13 +13,11 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @current_member = @group.members.find_by(user_id: current_user.id)
-    @tasks = @group.tasks.paginate(page: params[:page], :per_page => 15)
     if admin?(@group)
       @members = @group.members.paginate(page: params[:page], :per_page => 15)
     else
       @members = @group.members.where(pending: false).paginate(page: params[:page], :per_page => 15)
     end
-    # @tasks = @group.tasks.order(sort_column + " " + sort_direction).paginate(page: params[:page], :per_page => 15)
     @active_tasks =  @group.tasks.where(active: true).order(sort_column + " " + sort_direction).paginate(page: params[:page], :per_page => 15)
     @unactive_tasks =  @group.tasks.where(active: false).order(sort_column + " " + sort_direction).paginate(page: params[:page], :per_page => 15)
   end

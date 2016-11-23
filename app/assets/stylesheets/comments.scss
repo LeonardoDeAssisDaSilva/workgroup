@@ -10,3 +10,25 @@
 .replies .replies .replies .replies .replies {
   margin-left: 0;
 }
+
+.sorting{
+  width: 40%;
+  
+  label{
+    text-align: right;
+    clear: both;
+    float:left;
+    width: 5%;
+    margin-right:20px;
+    font-size: 1em;
+    padding: 0.2em  0.0em;
+    span{
+      font-size: 1.6em;
+    }
+  }
+  select{
+    width: 75%;
+    font-size: 1em;
+    float: left;
+  }
+}

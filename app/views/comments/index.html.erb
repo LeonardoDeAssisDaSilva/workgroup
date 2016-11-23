@@ -38,4 +38,19 @@
       </div>
   </div>
 </div>
+
+
+<div class="dropdown form-group sorting">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="glyphicon glyphicon-sort"></span>
+    Ordenar por
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><%= link_to "Antigas",  { sort: "created_at", direction: "asc" } %><li>
+    <li><%= link_to "Novas", { sort: "created_at", direction: "desc" } %><li>
+    <li><%= link_to "Melhores", { sort: "cached_votes_score", direction: "desc" } %><li>
+  </ul>
+</div>
+
 <%= nested_comments @comments %>

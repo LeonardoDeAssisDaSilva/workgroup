@@ -18,7 +18,7 @@
   </div>
   <div class="panel-footer clearfix">
       <span class="panel-title pull-right vote">
-        <span class="vote-count-<%=comment.id%>"><%= votes(comment) %></span>
+        <span class="vote-count-<%=comment.id%>"><%= comment.cached_votes_score %></span>
         <span id="vote-buttons-<%=comment.id%>">
           <%= render  :partial => '/comments/voting_buttons',
                       :locals => {comment: comment.id} %>

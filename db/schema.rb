@@ -10,16 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121001958) do
+ActiveRecord::Schema.define(version: 20161123002634) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.string   "ancestry"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "task_id"
     t.integer  "user_id"
+    t.integer  "cached_votes_total", default: 0
+    t.integer  "cached_votes_score", default: 0
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
     t.index ["ancestry"], name: "index_comments_on_ancestry"
+    t.index ["cached_votes_down"], name: "index_comments_on_cached_votes_down"
+    t.index ["cached_votes_score"], name: "index_comments_on_cached_votes_score"
+    t.index ["cached_votes_total"], name: "index_comments_on_cached_votes_total"
+    t.index ["cached_votes_up"], name: "index_comments_on_cached_votes_up"
     t.index ["task_id"], name: "index_comments_on_task_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
