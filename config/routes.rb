@@ -22,11 +22,14 @@ Rails.application.routes.draw do
   delete  'unfollow/users/:id',           to: 'users#unfollow',      as: 'unfollow_user'
   post    'follow/tasks/:id',             to: 'tasks#follow',        as: 'follow_task'
   delete  'unfollow/tasks/:id',           to: 'tasks#unfollow',      as: 'unfollow_task'
+  get 'password_resets/new',              to: 'password_resets#new'
+  get 'password_resets/edit',             to: 'password_resets#reset'
 
   resources :users do
     resources :invitations, only: [:new, :create, :index, :update, :destroy]
   end
   resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :comments, only: [:new, :create, :index]
   resources :groups do
     resources :members, only: [:create, :update, :destroy]
