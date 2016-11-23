@@ -9,9 +9,9 @@
       </button>
       <ul class="dropdown-menu" id="not-header-dropdown" aria-labelledby="dropdownMenu1">
         <% if current_user.following?(task) %>
-          <li><%= link_to "Deixa de seguir", unfollow_task_path(task.id), {method: :delete} %></li>
+          <li><%= link_to "Deixa de seguir", unfollow_task_path(task.id), { method: :delete } %></li>
         <% else %>
-          <li><%= link_to "Seguir", follow_task_path(task.id), {method: :post} %></li>
+          <li><%= link_to "Seguir", follow_task_path(task.id), { method: :post } %></li>
         <% end %>
         <% if author?(task) || admin?(@group.id) %>
           <li><%= link_to "Arquivar/Encerrar", archive_path(task.id), method: :put %></li>

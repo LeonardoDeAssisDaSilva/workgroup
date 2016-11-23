@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @current_member = current_user.members.find_by(group_id: @group.id)
-    if admin?(@group)
+    if admin?(@group.id)
       @members = @group.members.paginate(page: params[:page], :per_page => 15)
     else
       @members = @group.members.where(pending: false).paginate(page: params[:page], :per_page => 15)

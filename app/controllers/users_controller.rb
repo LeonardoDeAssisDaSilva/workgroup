@@ -69,10 +69,11 @@ class UsersController < ApplicationController
   def unfollow
     user = User.find(params[:id])
     current_user.stop_following(user)
-    respond_to do |format|
-      format.html { redirect_to user }
-      format.js
-    end
+    redirect_to user
+    # respond_to do |format|
+    #   format.html { redirect_to user }
+    #   format.js
+    # end
   end
 
   private

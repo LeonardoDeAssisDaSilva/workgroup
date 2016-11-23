@@ -7,11 +7,11 @@ module MembersHelper
     if user == current_user
       current_user.members.find_by(group_id: group).admin? if member?(group)
     else
-      user.admin? 
+      user.admin?
     end
   end
 
   def pending?(member, group)
-    Member.find(member).pending? if member?(group)
+    Member.find(member.id).pending? if member?(group.id)
   end
 end
