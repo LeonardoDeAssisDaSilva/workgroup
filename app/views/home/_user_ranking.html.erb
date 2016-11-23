@@ -1,0 +1,38 @@
+<div class="row">
+  <h1>Ranking de usuários</h1>
+
+  <div class="ranking_menu">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#user-tasks">Número de tarefas</a></li>
+    </ul>
+  <!-- RANKING_MENU -->
+  </div>
+
+  <div class="tab-content" id="ranking-users">
+
+    <div role="tabpanel" class="tab-pane fade in active" id="user-tasks">
+
+      <ul id="users">
+        <% @users_tasks.each do |user| %>
+
+          <li id="only-users">
+            <%= gravatar_for user, size: 75 %>
+            <%= link_to user.name, user %> <br>
+            <%= user.tasks.count %> Tarefas criadas
+            <%
+              @invitation = Invitation.new
+            %>
+          </li>
+
+        <% end %>
+      </ul>
+
+    <!--TASKS-->
+    </div>
+
+
+
+  <!--RANKING-USERS-->
+  </div>
+<!--ROW-->
+</div>

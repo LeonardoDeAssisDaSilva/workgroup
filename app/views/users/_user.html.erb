@@ -9,7 +9,7 @@
       <span class="glyphicon glyphicon-envelope" > Convidar</span>
     </button>
 
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <ul class="dropdown-menu" id="not-header-dropdown" aria-labelledby="dropdownMenu1">
       <% @current_user_groups.each do |user_group| %>
         <%# if !user.groups.exists?(user_group.id) && !user.invitations.exists?(group_id: user_group.id) %>
           <% @member = current_user.members.find_by(group_id: user_group.id).id %>

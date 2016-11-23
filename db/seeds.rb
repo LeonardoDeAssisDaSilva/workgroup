@@ -52,24 +52,34 @@ end
 ############################## MEMBERS ##############################
 Member.create!(group_id: Group.first.id,
                user_id: User.first.id,
-               admin: true)
+               admin: true,
+               pending: false)
 
 Member.create!(group_id: Group.second.id,
                user_id: User.first.id,
-               admin: true)
+               admin: true,
+               pending: false)
 
 for n in 1...20
   Member.create!(group_id: Group.first.id,
                  user_id: User.find(n).id,
-                 admin: false)
+                 admin: false,
+                 pending: false)
 end
 
 for n in 1...20
   Member.create!(group_id: Group.second.id,
                  user_id: User.find(n).id,
-                 admin: false)
+                 admin: false,
+                 pending: false)
 end
 
+for n in 1...55
+  Member.create!(group_id: Group.find(5).id,
+                 user_id: User.find(n).id,
+                 admin: false,
+                 pending: false)
+end
 ############################## TASKS ##############################
 @priorities = %w[Baixa Normal Alta Máxima]
 
@@ -112,4 +122,21 @@ for n in 1...20
                description: description,
                group_id: Group.second.id,
                user_id: User.find(n).id)
+
+
+end
+
+for n in 1...15
+  title = Faker::Company.bs
+  priority = @priorities[rand(4)]
+  deadline = Faker::Time.forward(30, :morning)
+  description = Faker::Hacker.say_something_smart
+  Task.create!(title: title,
+               priority: priority,
+               deadline: deadline,
+               description: description,
+               group_id: Group.third.id,
+               user_id: User.find(n).id)
+
+
 end
