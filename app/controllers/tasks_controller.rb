@@ -55,6 +55,7 @@ class TasksController < ApplicationController
   def follow
     task = Task.find(params[:id])
     current_user.follow(task)
+    debugger
     redirect_to group_path(task.group_id)
   end
 
