@@ -7,7 +7,7 @@
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       <span class="glyphicon glyphicon-option-vertical" ></span>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <ul class="dropdown-menu" id="not-header-dropdown" aria-labelledby="dropdownMenu1">
       <li><%= link_to "Visualizar perfil", user_path(member.user) %></li>
       <% if admin?(params[:id]) %>
         <% if !member.pending? %>

@@ -1,0 +1,54 @@
+<div class="row">
+  <h1>Ranking de grupos</h1>
+
+  <div class="ranking_menu">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#group-members">Número de membros</a></li>
+      <li><a data-toggle="tab" href="#group-tasks">Número de tarefas</a></li>
+    </ul>
+  <!-- RANKING_MENU -->
+  </div>
+
+  <div class="tab-content" id="ranking-groups">
+
+    <div role="tabpanel" class="tab-pane fade in active" id="group-members">
+      <% @groups_members.each do |group| %>
+
+        <div class="col-md-4 groups" >
+          <div class="spacer" style>
+            <h2><strong><%= group.members.count %> Membros</strong><h2>
+            <img class="img-circle" src="/assets/group.png">
+            <h2><%= group.name %></h2>
+            <p class="area"><strong><%= group.area %></strong></p>
+            <p class="left description"><%= group.description %></p>
+
+              <%= link_to "Ver mais", group, {:class => "btn btn-default", :role => "button"}%>
+
+          </div>
+        </div>
+      <% end %>
+    <!--MEMBERS-->
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="group-tasks">
+      <% @groups_tasks.each do |group| %>
+
+        <div class="col-md-4 groups" >
+          <div class="spacer" style>
+            <h2><strong><%= group.tasks.count %> Tarefas</strong><h2>
+            <img class="img-circle" src="/assets/group.png">
+            <h2><%= group.name %></h2>
+            <p class="area"><strong><%= group.area %></strong></p>
+            <p class="left description"><%= group.description %></p>
+
+              <%= link_to "Ver mais", group, {:class => "btn btn-default", :role => "button"}%>
+
+          </div>
+        </div>
+      <% end %>
+    <!--TASKS-->
+    </div>
+
+  <!--RANKING-GROUPS-->
+  </div>
+<!--ROW-->
+</div>
