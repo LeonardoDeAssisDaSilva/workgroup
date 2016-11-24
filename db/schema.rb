@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20161123200946) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "description"
-    t.string   "picture"
     t.boolean  "private"
   end
 
