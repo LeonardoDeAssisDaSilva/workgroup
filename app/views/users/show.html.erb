@@ -18,27 +18,26 @@
 
       <div class="group_menu" style="margin-bottom: 10px;">
         <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a data-toggle="tab" href="#user_tasks">Tarefas
-                             <span class="badge pull-right"><%=@tasks.count%></span>
-          </a></li>
-          <% if current_user == @user %>
-            <li><a data-toggle="tab" href="#user_invitations">Convites
-                <span class="badge pull-right"><%=@invitations.count%></span>
-            </a></li>
-          <% end %>
-          <li><a data-toggle="tab" href="#user_followers">Seguidores
-              <span class="badge pull-right"><%=@followers.count%></span>
-          </a></li>
-          <li><a data-toggle="tab" href="#user_follows">Seguindo
-              <span class="badge pull-right"><%=@followings.count%></span>
-          </a></li>
-          <li><a data-toggle="tab" href="#user_comments">Comentários
-              <span class="badge pull-right"><%=@comments.count%></span>
-          </a></li>
-          <li><a data-toggle="tab" href="#user_groups">Grupos
+          <li class="<%= 'active' if user_tab == 'groups' || !params[:tab] %>"><a href="?tab=groups">Grupos
               <span class="badge pull-right"><%=@groups.count%></span>
           </a></li>
-
+          <% if current_user == @user %>
+            <li class="<%= 'active' if user_tab == 'invitations' %>"><a href="?tab=invitations">Convites
+                <span class="badge pull-right"><%=@invitations.count%></span>
+            </a></li>
+            <li class="<%= 'active' if user_tab == 'tasks' %>"><a href="?tab=tasks">Tarefas
+                               <span class="badge pull-right"><%=@tasks.count%></span>
+            </a></li>
+          <% end %>
+          <li class="<%= 'active' if user_tab == 'followers' %>"><a href="?tab=followers">Seguidores
+              <span class="badge pull-right"><%=@followers.count%></span>
+          </a></li>
+          <li class="<%= 'active' if user_tab == 'follows' %>"><a href="?tab=follows">Seguindo
+              <span class="badge pull-right"><%=@followings.count%></span>
+          </a></li>
+          <li class="<%= 'active' if user_tab == 'comments' %>"><a href="?tab=comments">Comentários
+              <span class="badge pull-right"><%=@comments.count%></span>
+          </a></li>
         </ul>
       </div>
     </div>
@@ -47,29 +46,28 @@
 
 
   <div class="col-sm-9 well group_content tab-content" id="div_id">
-      <div role="tabpanel" class="tab-pane fade in active" id="user_tasks">
+      <div role="tabpanel" class="<%= (user_tab == 'tasks' || !params[:tab]) ?  'tab-pane active' : 'tab-pane' %>" id="tasks">
         <ul class="list">
           <%= render :partial => '/users/item', collection: @tasks, as: :item %>
         </ul>
         <%= will_paginate @tasks %>
       </div>
 
-      <div role="tabpanel" class="tab-pane fade in" id="user_followers">
+      <div role="tabpanel" class="<%= user_tab == 'followers' ? 'tab-pane active' : 'tab-pane' %>" id="followers">
         <ul class="list">
           <%= render :partial => '/users/item', collection: @followers, as: :item %>
         </ul>
         <%= will_paginate @followers %>
       </div>
 
-      <div role="tabpanel" class="tab-pane fade in" id="user_follows">
+      <div role="tabpanel" class="<%= user_tab == 'follows' ? 'tab-pane active' : 'tab-pane' %>" id="follows">
           <ul class="list">
             <%= render :partial => '/users/item', collection: @followings, as: :item %>
           </ul>
           <%= will_paginate @followings %>
       </div>
 
-      <div role="tabpanel" class="tab-pane fade in" id="user_comments">
-        <%#= render :file => 'groups/_edit' %>
+      <div role="tabpanel" class="<%= user_tab == 'comments' ? 'tab-pane active' : 'tab-pane' %>" id="comments">
         <ul class="list">
           <% @comments.each do |c| %>
             <li>
@@ -82,16 +80,13 @@
         <%= will_paginate @comments %>
       </div>
 
-      <div role="tabpanel" class="tab-pane fade in" id="user_groups">
-        <%#= render :file => 'groups/_edit' %>
+      <div role="tabpanel" class="<%= user_tab == 'groups' ? 'tab-pane active' : 'tab-pane' %>" id="groups">
         <ul class="list">
-          <% @groups.each do |g| %>
-              <%= render :partial => '/users/item', collection: @groups, as: :item %>
-          <% end %>
+          <%= render :partial => '/users/item', collection: @groups, as: :item %>
         </ul>
         <%= will_paginate @groups %>
       </div>
-      <div role="tabpanel" class="tab-pane fade in" id="user_invitations">
+      <div role="tabpanel" class="<%= user_tab == 'invitations' ? 'tab-pane active' : 'tab-pane' %>" id="invitations">
         <%= render :file => '/invitations/_index' %>
       </div>
   </div>

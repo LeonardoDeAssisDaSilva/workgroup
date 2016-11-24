@@ -1,6 +1,7 @@
 <% provide(:title, @group.name) %>
 <% breadcrumb :group, @group %>
 
+
 <div class="row"  style="margin: 0px;">
 
   <div class="col-sm-3 well">
@@ -18,15 +19,15 @@
       </div>
 
       <div class="group_menu">
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a data-toggle="tab" href="#group_forum">Fórum
+        <ul class="nav nav-pills nav-stacked" >
+          <li class="<%= 'active' if group_tab == 'forum' || !params[:tab] %>"><a href="?tab=forum">Fórum
             <span class="badge pull-right"><%=@active_tasks.count%></span>
           </a></li>
-          <li><a data-toggle="tab" href="#group_members">Membros
+          <li class="<%= 'active' if group_tab == 'members' %>"><a href="?tab=members">Membros
             <span class="badge pull-right"><%=@members.count%></span>
           </a></li>
           <% if admin?(@group.id) %>
-              <li><a data-toggle="pill" href="#group_configurations">Configurações</a></li>
+              <li class="<%= 'active' if group_tab == 'configurations' %>"><a href="?tab=configurations">Configurações</a></li>
           <% end %>
           <% if member?(@group.id) && !pending?(@current_member, @group) %>
               <li>
@@ -46,19 +47,19 @@
   <!--COL-MD-3 -->
   </div>
 
-  <div class="col-sm-9 well group_content tab-content" id="div_id">
+  <div class="col-sm-9 well group_content tab-content" >
     <% if member?(@group.id) && !pending?(@current_member, @group) %>
-      <div role="tabpanel" class="tab-pane fade in active" id="group_forum">
+      <div role="tabpanel" class="<%= (group_tab == 'forum' || !params[:tab]) ?  'tab-pane active' : 'tab-pane' %>" id="forum">
         <%= render :file => '/tasks/_index' %>
         <!-- GROUP_FORUM -->
       </div>
 
-      <div role="tabpanel" class="tab-pane fade in" id="group_members">
+      <div role="tabpanel" class="<%= group_tab == 'members' ? 'tab-pane active' : 'tab-pane' %>" id="members">
         <%= render :file => '/members/_index' %>
         <!-- GROUP_MEMBERS -->
       </div>
 
-      <div role="tabpanel" class="tab-pane fade in" id="group_configurations">
+      <div role="tabpanel" class="<%= group_tab == 'configurations' ? 'tab-pane active' : 'tab-pane' %>" id="configurations">
         <%= render :file => 'groups/_edit' %>
         <!-- GROUP_CONFIGURATIONS -->
       </div>
@@ -80,16 +81,17 @@
 
 
 <!-- <script type="text/javascript">
-$(document).ready(function() {
-    if(location.hash) {
-        $('a[href=' + location.hash + ']').tab('show');
-    }
-    $(document.body).on("click", "a[data-toggle]", function(event) {
-        location.hash = this.getAttribute("href");
+$(function() {
+    // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
+    $('a[data-toggle="tab"]').on('shown', function (e) {
+        // save the latest tab; use cookies if you like 'em better:
+        localStorage.setItem('lastTab', $(this).attr('href'));
     });
-});
-$(window).on('popstate', function() {
-    var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
-    $('a[href=' + anchor + ']').tab('show');
+
+    // go to the latest tab, if it exists:
+    var lastTab = localStorage.getItem('lastTab');
+    if (lastTab) {
+        $('[href="' + lastTab + '"]').tab('show');
+    }
 });
 </script> -->

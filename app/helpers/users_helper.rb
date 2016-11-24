@@ -8,4 +8,8 @@ module UsersHelper
                        :class => "gravatar img-#{type}",
                        :gravatar => { :size => size })
   end
+
+  def user_tab
+    %w[tasks invitations followers follows comments groups].include?(params[:tab]) ? params[:tab] : nil
+  end
 end
