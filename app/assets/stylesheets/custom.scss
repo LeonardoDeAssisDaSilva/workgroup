@@ -241,7 +241,7 @@ select{
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
-  height: auto !important;
+  height: auto;
 }
 
 #error_explanation {

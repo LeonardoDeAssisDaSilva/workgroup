@@ -46,7 +46,7 @@
 
 
   <div class="col-sm-9 well group_content tab-content" id="div_id">
-      <div role="tabpanel" class="<%= (user_tab == 'tasks' || !params[:tab]) ?  'tab-pane active' : 'tab-pane' %>" id="tasks">
+      <div role="tabpanel" class="<%= user_tab == 'tasks' ?  'tab-pane active' : 'tab-pane' %>" id="tasks">
         <ul class="list">
           <%= render :partial => '/users/item', collection: @tasks, as: :item %>
         </ul>
@@ -80,7 +80,7 @@
         <%= will_paginate @comments %>
       </div>
 
-      <div role="tabpanel" class="<%= user_tab == 'groups' ? 'tab-pane active' : 'tab-pane' %>" id="groups">
+      <div role="tabpanel" class="<%= (user_tab == 'groups' || !params[:tab]) ? 'tab-pane active' : 'tab-pane' %>" id="groups">
         <ul class="list">
           <%= render :partial => '/users/item', collection: @groups, as: :item %>
         </ul>
