@@ -1,9 +1,14 @@
-<li id="only-users">
+<li class="panel panel-default" style="margin: 0px; padding-left: 10px;">
   <% if item.class.table_name == "users" %>
+    <%= gravatar_for item, size: 40 %>
     <%= link_to item.name, item %>
   <% elsif item.class.table_name == "tasks" %>
-    <%= link_to item.title, task_comments_path(item.group_id, item.id) %>
+    <% group = Group.find(item.group_id) %>
+    <b>Grupo: </b><%= link_to group.name, group_path(group.id) %>
+    <br>
+    <b>Tarefa: </b><%= link_to item.title, task_comments_path(item.group_id, item.id) %>
   <% else %>
+    <img class="img-circle" width="40" height="40" src="/assets/group.png">
     <%= link_to item.name, group_path(item) %>
   <% end %>
 </li>

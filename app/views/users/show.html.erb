@@ -47,6 +47,9 @@
 
   <div class="col-sm-9 well group_content tab-content" id="div_id">
       <div role="tabpanel" class="<%= user_tab == 'tasks' ?  'tab-pane active' : 'tab-pane' %>" id="tasks">
+        <div class="jumbotron narrower">
+          <h3>Tarefas</h3>
+        </div>
         <ul class="list">
           <%= render :partial => '/users/item', collection: @tasks, as: :item %>
         </ul>
@@ -54,6 +57,9 @@
       </div>
 
       <div role="tabpanel" class="<%= user_tab == 'followers' ? 'tab-pane active' : 'tab-pane' %>" id="followers">
+        <div class="jumbotron narrower">
+          <h3>Seguidores</h3>
+        </div>
         <ul class="list">
           <%= render :partial => '/users/item', collection: @followers, as: :item %>
         </ul>
@@ -61,6 +67,9 @@
       </div>
 
       <div role="tabpanel" class="<%= user_tab == 'follows' ? 'tab-pane active' : 'tab-pane' %>" id="follows">
+          <div class="jumbotron narrower">
+            <h3>Seguindo</h3>
+          </div>
           <ul class="list">
             <%= render :partial => '/users/item', collection: @followings, as: :item %>
           </ul>
@@ -68,12 +77,18 @@
       </div>
 
       <div role="tabpanel" class="<%= user_tab == 'comments' ? 'tab-pane active' : 'tab-pane' %>" id="comments">
+        <div class="jumbotron narrower">
+          <h3>Comentários</h3>
+        </div>
         <ul class="list">
           <% @comments.each do |c| %>
-            <li>
+            <li class="panel panel-default" style="margin: 0px; padding-left: 10px;">
               <% task = Task.find(c.task.id) %>
-              <%= link_to task.title, task_comments_path(task.group, task) %>
-              <%= ": #{c.content.first(20)}" %>
+              <b>Tarefa: </b><%= link_to task.title, task_comments_path(task.group, task) %>
+              <br>
+              <b>Comentário: </b><%= "#{c.content.first(50)}" %>
+              <br>
+              <b>Pontuação: </b><%= "#{c.cached_votes_score}" %>
             </li>
           <% end %>
         </ul>
@@ -81,6 +96,9 @@
       </div>
 
       <div role="tabpanel" class="<%= (user_tab == 'groups' || !params[:tab]) ? 'tab-pane active' : 'tab-pane' %>" id="groups">
+        <div class="jumbotron narrower">
+          <h3>Grupos</h3>
+        </div>
         <ul class="list">
           <%= render :partial => '/users/item', collection: @groups, as: :item %>
         </ul>

@@ -1,9 +1,11 @@
 <% provide(:title, 'Convites') %>
 
-  <%= will_paginate @invitations %>
+<div class="jumbotron narrower">
+  <h3>Convites</h3>
+</div>
 
-  <ul class="list">
-    <%= render @invitations %>
-  </ul>
+<ul class="list">
+  <%= render @invitations %>
+</ul>
 
-  <%= will_paginate @invitations %>
+<%= will_paginate @invitations %>
