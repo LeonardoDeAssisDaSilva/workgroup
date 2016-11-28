@@ -10,6 +10,7 @@ class TasksController < ApplicationController
     group = Group.find(params[:group_id])
     @task = group.tasks.new(task_params)
     if @task.save
+      current_user.follow(@task)
       redirect_to group
     else
       render 'new'

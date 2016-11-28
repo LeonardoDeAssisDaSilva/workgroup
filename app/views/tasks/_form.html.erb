@@ -11,7 +11,7 @@
                           {}, { class: 'form-control' }) %>
 
   <%= f.label :deadline, "Data de encerramento" %>
-  <%= f.datetime_field :deadline, class: 'form-control' %>
+  <%= f.datetime_field :deadline,  min: Time.now, class: 'form-control' %>
 
   <%= f.label :description, "Descrição" %>
   <%= f.text_area :description, class: 'form-control' %>
