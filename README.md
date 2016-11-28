@@ -18,19 +18,7 @@ Then, populate the database:
 $ rails db:seed
 ```
 
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ rails test
-```
-
-Or, run the automated test suite:
-
-```
-$ bundle exec guard
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
+Finally, run thee app in a local server:
 
 ```
 $ rails server
