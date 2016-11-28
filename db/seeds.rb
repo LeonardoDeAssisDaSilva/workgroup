@@ -140,3 +140,46 @@ for n in 1...15
 
 
 end
+
+####################### USER FOLLOWING ############################
+for n in 1...20
+  user = User.find(n)
+  20.times do
+    user2 = User.find(rand(40)+1)
+    user.follow(user2) if user.id != user2.id
+  end
+end
+
+####################### TASK FOLLOWING ############################
+for n in 1...20
+  user = User.find(n)
+  20.times do
+    task = Task.find(rand(50)+1)
+    user.follow(task) if !user.following?(task)
+  end
+end
+
+############################ COMMENTS #############################
+for n in 1...20
+  user = User.find(n)
+  20.times do
+    task = Task.find(rand(50)+1)
+    content = Faker::Hacker.say_something_smart
+    Comment.create!(user_id: user.id,
+                    task_id: task.id,
+                    content: content)
+  end
+end
+
+############################# VOTES ###############################
+for n in 1...20
+  user = User.find(n)
+  10.times do
+    comment = Comment.find(rand(50)+1)
+    comment.liked_by user
+  end
+  5.times do
+    comment = Comment.find(rand(50)+1)
+    comment.disliked_by user
+  end
+end
